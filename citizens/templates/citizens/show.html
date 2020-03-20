@@ -1,8 +1,45 @@
 {% extends "core/base.html" %}
+{% load static %}
 
 {% block content %}
-
-Bla
+    <div class="position-relative overflow-hidden bg-light">
+        <div class="container p-4 d-flex justify-content-center">
+            <div class="card" style="width: 18rem;">
+                <img src="{% static "citizens/qr-code.png" %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Jonas Dippel</h5>
+                    <div class="card-text">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-2">
+                                    <i class="pull-right fa fa-envelope"></i>
+                                </div>
+                                <div class="col-10">
+                                    <span>jonas.dippel@gmx.de</span>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-2">
+                                    <i class="pull-right fa fa-birthday-cake mr-2"></i>
+                                </div>
+                                <div class="col-10">
+                                    <span>26.06.1997</span>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-2">
+                                    <i class="pull-right fa fa-map mr-2"></i>
+                                </div>
+                                <div class="col-10">
+                                    Fischerinsel 1 <br> 10179 Berlin
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 {% endblock %}
