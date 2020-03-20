@@ -1,0 +1,15 @@
+[
+  {
+    "pk": 1,
+    "model": "health.User",
+    "fields": {
+      "username": "gesundheitsamt-braunschweig",
+      "is_health_department": true,
+      "is_active": true,
+      "is_superuser": false,
+      "longitude": 52.286453,
+      "latitude": 10.520002,
+      "password": "pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE="
+    }
+  }
+]

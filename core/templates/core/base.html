@@ -39,8 +39,8 @@
         </div>
 
         <div class="text-right col-md-11 py-2">
-            <a class="d-inline-block mr-3" href="{% url "home" %}">Home</a>
-            <a class="d-inline-block" href="{% url "about-us" %}">About Us</a>
+            {% block header %}
+            {% endblock %}
         </div>
     </div>
 </nav>

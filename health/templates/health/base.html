@@ -1,0 +1,9 @@
+{% extends "core/base.html" %}
+
+{% block header %}
+    {% block links %}
+    {% endblock %}
+
+    <a class="d-inline-block mr-3" href="#">{{ user.username }}</a>
+    <a class="d-inline-block" href="{% url 'logout' %}">Logout</a>
+{% endblock %}
