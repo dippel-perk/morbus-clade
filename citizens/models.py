@@ -31,7 +31,7 @@ def generate_token():
 class AccessToken(models.Model):
     token = models.CharField(max_length=64, default=generate_token, primary_key=True)
 
-    citizen = models.OneToOneField(Citizen, on_delete=models.CASCADE)
+    citizen = models.OneToOneField(Citizen, on_delete=models.CASCADE, related_name="access_token")
     is_write = models.BooleanField(default=False)
 
     expired = models.DateTimeField(default=one_week_hence)
