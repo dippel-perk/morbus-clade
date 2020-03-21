@@ -21,9 +21,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '9n!m-27wgx@59$#mqf3k%vluo(9e9)kef=8ir6p$2*ked_@e8)'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'sars-cov2-testing.herokuapp.com']
 
 # Application definition
@@ -136,7 +133,6 @@ LOGIN_REDIRECT_URL = '/health/'
 LOGIN_URL = '/health/login'
 LOGOUT_REDIRECT_URL = LOGIN_URL
 
-
 from django.contrib.messages import constants as messages
 
 MESSAGE_TAGS = {
@@ -147,8 +143,15 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert-danger',
 }
 
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+if os.environ.get('DJANGO_PROD') is not None:
+    # Production Settings
+    PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+    STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
-import django_heroku
-django_heroku.settings(locals())
+    import django_heroku
+
+    django_heroku.settings(locals())
+else:
+    # Dev Settings
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = True
