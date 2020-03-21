@@ -1,0 +1,32 @@
+{% load static %}
+
+<div class="row no-gutters">
+    <!-- timeline item 1 event content -->
+    <div class="col-sm py-2">
+        <div class="card" style="height: 200px">
+            <div class="card-body">
+                <h4 class="card-title text-muted">{{ title }}</h4>
+                <p class="card-text"> {{ text }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- timeline item 1 center dot -->
+    <div class="col-sm-1 text-center flex-column d-none d-sm-flex">
+        <div class="row h-50">
+            <div class="col border-right">&nbsp;</div>
+            <div class="col">&nbsp;</div>
+        </div>
+        <h5 class="m-2">
+            <span class="badge badge-pill bg-primary border">&nbsp;</span>
+        </h5>
+        <div class="row h-50">
+            <div class="col border-right">&nbsp;</div>
+            <div class="col"></div>
+        </div>
+    </div>
+
+    <div class="col-sm"><img src="{% static img_path %}" alt=""
+                             class="img-fluid p-3 mx-auto d-block"
+                             style="height: 200px"></div>
+</div>

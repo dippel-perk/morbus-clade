@@ -97,6 +97,14 @@
                 Orte an denen sich viele Infizierte aufgehalten haben in einer gesonderten Meldung an die Bürger
                 weiterzugeben.
             </div>
+
+            <div class="container py-2">
+                <div class="container py-2">
+                    {% include 'core/partials/_timeline_item_right.html' with img_path="core/img/document.png" title='1. Anmelden' text='Wenn ein Bürger von einem Arzt einen Test verschrieben bekommt, meldet er sich bei der Seite mit einer Email Adresse an. Die Email Adresse ist das Hauptkommunikationsmedium im folgenden Prozess.' %}
+                    {% include 'core/partials/_timeline_item_left.html' with img_path="core/img/document.png" title='2. Testen' text='Wenn der Bürger sich nun zu einer Teststation beginnt zeig er vor der Abstrichentnahme den QR Code, den er/sie nach der Registrierung zugesandt bekommen hat. Die Teststation kann so ohne weitere Datenerfassung direkt eine Probe mit dem Bürger verknüpfen' %}
+                     {% include 'core/partials/_timeline_item_right.html' with img_path="core/img/science.png" title='3. Auswertung' text='Nachdem das Testlabor die Probe geprüft hat, wird sie anhand der Identifikationsnummer auf der Probe den Status des Tests für den jeweiligen Bürger auf positiv oder negativ setzen.'%}
+                </div>
+            </div>
         </div>
 
     </div>

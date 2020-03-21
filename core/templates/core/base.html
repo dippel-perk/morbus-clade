@@ -22,7 +22,7 @@
 
 <body>
 
-<nav class="site-header py-1 bg-light">
+<nav class="py-1 bg-light navbar-light">
     <div class="container d-flex flex-column flex-md-row">
         <div class="text-left col-md-1 py-2">
             <a class="" href="{% url "home" %}">
@@ -44,8 +44,10 @@
     {% include 'core/partials/_messages.html' %}
 </div>
 
-{% block content %}
-{% endblock %}
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
 
 <footer class="py-5 bg-light" style="width: 100%">
     <div class="container">

@@ -1,6 +1,7 @@
-body
-{
-  font-family: 'Roboto', sans-serif !important;
+body {
+    font-family: 'Roboto', sans-serif !important;
+    height: 100%;
+    position: relative;
 }
 
 
@@ -8,16 +9,17 @@ body
  * Custom translucent site header
  */
 
-.site-header {
-  background-color: rgba(0, 0, 0, .85);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  backdrop-filter: saturate(180%) blur(20px);
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
-.site-header a {
-  color: #999;
-  transition: ease-in-out color .15s;
+
+#content {
+    min-height: 100vh; /* will cover the 100% of viewport */
+    overflow: hidden;
+    display: block;
+    position: relative;
+    padding-bottom: 200px;
 }
-.site-header a:hover {
-  color: #fff;
-  text-decoration: none;
-}
+
