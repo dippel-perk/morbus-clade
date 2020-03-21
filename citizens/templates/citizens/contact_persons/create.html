@@ -48,7 +48,14 @@
                             </div>
                         </div>
 
-                        {{ form.last_contact|as_crispy_field }}
+                        <div class="form-row">
+                            <div class="form-group col-md-6 mb-0">
+                                {{ form.last_contact|as_crispy_field }}
+                            </div>
+                            <div class="form-group col-md-6 mb-0">
+                                {{ form.intensity|as_crispy_field }}
+                            </div>
+                        </div>
                         {{ form.description|as_crispy_field }}
 
                         <button type="submit" class="btn btn-primary float-right">Kontaktperson hinzufügen</button>

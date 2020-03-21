@@ -38,6 +38,15 @@ class AccessToken(models.Model):
 
 
 class ContactPerson(models.Model):
+    LOW = 0
+    MEDIUM = 1
+    HIGH = 2
+
+    INTENSITY_CHOICES = [
+        (LOW, 'Gering'),
+        (MEDIUM, 'Mittelstark'),
+        (HIGH, 'Hoch'),
+    ]
 
     citizen = models.ForeignKey(Citizen, related_name="contact_persons", on_delete=models.CASCADE)
     last_contact = models.DateTimeField(default=one_week_hence)
@@ -48,5 +57,19 @@ class ContactPerson(models.Model):
     email = models.EmailField()
     telephone = PhoneNumberField()
 
+    intensity = models.IntegerField(choices=INTENSITY_CHOICES, default=LOW)
+
     description = models.TextField()
+
+    @property
+    def is_intensity_low(self):
+        return self.intensity == ContactPerson.LOW
+
+    @property
+    def is_intensity_medium(self):
+        return self.intensity == ContactPerson.MEDIUM
+
+    @property
+    def is_intensity_high(self):
+        return self.intensity == ContactPerson.HIGH
 

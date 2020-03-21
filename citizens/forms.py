@@ -1,6 +1,7 @@
 from django import forms
 from .models import Citizen, ContactPerson
 from phonenumber_field.formfields import PhoneNumberField
+from django.utils.safestring import mark_safe
 
 
 class CitizenForm(forms.ModelForm):
@@ -56,11 +57,18 @@ class ContactPersonForm(forms.ModelForm):
                                        widget=forms.TextInput(
                                            attrs={'id': 'lastContactInput', 'autocomplete': 'off'}
                                        ), help_text="Wann war ihr letzter physischer Kontakt mit dieser Person?")
+
+    intensity = forms.ChoiceField(choices=ContactPerson.INTENSITY_CHOICES, label="Intensität des Kontakts",
+                                  help_text=mark_safe(
+                                      "Gering enstpricht flüchtigem Kontakt wie Händeschütteln. "
+                                      "Mittelstark entspricht intensiverem Kontakt. "
+                                      "Hoch entspricht intensivem Kontakt über einen langen Zeitraum."))
     description = forms.CharField(max_length=300,
                                   widget=forms.Textarea,
                                   label="Beschreibung",
-                                  help_text="Wo haben Sie die Kontaktperson zuletzt getroffen. Beschreiben Sie die Situation")
+                                  help_text="Wo haben Sie die Kontaktperson zuletzt getroffen. "
+                                            "Beschreiben Sie die Situation")
 
     class Meta:
         model = ContactPerson
-        fields = ('first_name', 'last_name', 'email', 'telephone', 'last_contact', 'description')
+        fields = ('first_name', 'last_name', 'email', 'telephone', 'last_contact', 'intensity', 'description')
