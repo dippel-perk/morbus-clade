@@ -92,8 +92,8 @@
       "is_laboratory": true,
       "is_active": true,
       "is_superuser": false,
-      "longitude": 10.520002,
-      "latitude": 52.286453,
+      "longitude": 10.517753,
+      "latitude": 52.274759,
       "password": "pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE="
     }
   }
