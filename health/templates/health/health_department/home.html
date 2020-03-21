@@ -18,9 +18,9 @@
                             </div>
                         </div>
                         <div class="col-4">
-                             <div class="form-group">
+                            <div class="form-group">
                                 <label for="slider">Alter</label>
-                                <vue-slider v-model="ageRange" :enable-cross="false"id="slider"></vue-slider>
+                                <vue-slider v-model="ageRange" :enable-cross="false" id="slider"></vue-slider>
                             </div>
                         </div>
                         <div class="col-4">
@@ -47,12 +47,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="citizen in filtered" @click="showDetail">
+                    <tr v-for="citizen in filtered" @click="showDetail(citizen)">
                         <td scope="row">[[ citizen.first_name ]] [[ citizen.last_name ]]</td>
                         <td>[[ citizen.email ]]</td>
                         <td>[[ citizen.age ]]</td>
                         <td>[[ citizen.city ]]</td>
-                        <td>Pending</td>
+                        <td>Ausstehend</td>
                     </tr>
                     </tbody>
                 </table>
@@ -78,9 +78,10 @@
             }
 
             function formatCitizen(citizen) {
-                citizen = citizen.fields;
-                citizen.age = calculateAge(citizen.date_of_birth)
-                return citizen
+                let c = citizen.fields;
+                c.age = calculateAge(c.date_of_birth);
+                c.id = citizen.pk;
+                return c;
             }
 
             var app = new Vue({
@@ -96,8 +97,9 @@
                     VueSlider: window['vue-slider-component']
                 },
                 methods: {
-                    showDetail() {
-                        window.location.href = 'some url';
+                    showDetail(citizen) {
+                        console.log(citizen);
+                        window.location.href = "{% url "detail" %}/" + citizen.id;
                     }
                 },
                 mounted() {
