@@ -1,0 +1,84 @@
+{% extends "citizens/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <div class="bg-light">
+        <div class="container py-5">
+
+            <div class="row">
+
+
+                <div class="col-lg-6 d-none d-lg-block">
+                    <img src="{% static "citizens/img/contact-persons.png" %}" alt="" class="img-fluid img-circle">
+                </div>
+
+                <div class="col-lg-6">
+                    <h1 class="display-4">Kontaktperson eintragen</h1>
+                    <p class="lead text-muted mb-0">
+                        Zum Schutz anderer, sollten Sie in diesem Formular ihre Kontaktpersonen eintragen.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-white">
+
+        <div class="container py-5">
+
+            <div class="card rounded bg-white" style="box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);">
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md-6 mb-0">
+                                {{ form.first_name|as_crispy_field }}
+                            </div>
+                            <div class="form-group col-md-6 mb-0">
+                                {{ form.last_name|as_crispy_field }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6 mb-0">
+                                {{ form.email|as_crispy_field }}
+                            </div>
+                            <div class="form-group col-md-6 mb-0">
+                                {{ form.telephone|as_crispy_field }}
+                            </div>
+                        </div>
+
+                        {{ form.last_contact|as_crispy_field }}
+                        {{ form.description|as_crispy_field }}
+
+                        <button type="submit" class="btn btn-primary float-right">Kontaktperson hinzufügen</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"
+          integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"
+            integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            jQuery.datetimepicker.setLocale('de');
+            $("#lastContactInput").datetimepicker({
+                format: 'd.m.Y H:i',
+                minDate: new Date('{{ min_date }}'),
+                maxDate: new Date('{{ max_date }}')
+            });
+        })
+
+    </script>
+
+{% endblock %}

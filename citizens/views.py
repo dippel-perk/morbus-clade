@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseNotFound
-from .forms import CitizenForm
+from .forms import CitizenForm, ContactPersonForm
 from .models import AccessToken
 from health.models import User
-
+from django.contrib import messages
+from datetime import datetime, timedelta
+from health.models import Test
 
 def home(request):
     users = User.objects.all()
@@ -30,3 +32,33 @@ def create(request):
     else:
         form = CitizenForm()
     return render(request, 'citizens/create.html', {'form': form})
+
+
+def add_contact_person(request, token):
+    token_object = get_object_or_404(AccessToken, token=token)
+
+    try:
+
+        if token_object.citizen and token_object.citizen.test and token_object.citizen.test.is_positive:
+            if request.method == "POST":
+                form = ContactPersonForm(request.POST)
+                if form.is_valid():
+                    contact_person = form.save(commit=False)
+                    contact_person.citizen = token_object.citizen
+                    contact_person.save()
+
+                    messages.success(request, "Die Kontaktperson erfolgreich hinzugefügt.")
+                    return redirect('citizen-show', token=token_object.token)
+            else:
+                form = ContactPersonForm()
+
+            min_date = (token_object.citizen.test.created_at - timedelta(days=7)).strftime("%Y-%m-%d")
+            max_date = token_object.citizen.test.created_at.strftime("%Y-%m-%d")
+
+            return render(request, 'citizens/contact_persons/create.html',
+                          {'form': form, 'min_date': min_date, 'max_date': max_date})
+
+        return HttpResponseNotFound()
+    except Test.DoesNotExist:
+        return HttpResponseNotFound()
+
