@@ -14,11 +14,6 @@ def home(request):
         return render(request, 'health/health_department/home.html', {'citizens': citizens_json})
 
 
-def citizen_detail(request):
-    if request.user.is_health_department:
-        return render(request, 'health/health_department/detail.html')
-
-
 # @login_required
 def create_test(request):
     if request.method == "POST":

@@ -1,0 +1,166 @@
+{% extends "health/health_department/base.html" %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <div id="app">
+        <div class="container">
+            <div class="m-5">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ citizen.first_name }} {{ citizen.last_name }}</h5>
+                                <div class="card-text">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <i class="pull-right fa fa-envelope"></i>
+                                            </div>
+                                            <div class="col-10">
+                                                <span>{{ citizen.email }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-2">
+                                                <i class="pull-right fa fa-birthday-cake mr-2"></i>
+                                            </div>
+                                            <div class="col-10">
+                                                <span>{{ citizen.date_of_birth }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-2">
+                                                <i class="pull-right fa fa-map mr-2"></i>
+                                            </div>
+                                            <div class="col-10">
+                                                {{ citizen.address }} <br> {{ citizen.zip_code }} {{ citizen.city }}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card" style="height: 100%">
+                            <div class="card-body">
+                                <h5 class="card-title">Testablauf</h5>
+                                <div class="card-text">
+                                    {% if citizen.test %}
+                                        <div class="row mt-2">
+                                            <div class="col-2">
+                                                <i class="fas fa-store"></i>
+                                            </div>
+                                            <div class="col-10">
+                                                {{ citizen.test.test_station.display_name }}
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-2">
+                                                <i class="fas fa-flask"></i>
+                                            </div>
+                                            <div class="col-10">
+                                                {{ citizen.test.laboratory.display_name }}
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-2">
+                                                <i class="fas fa-poll"></i>
+                                            </div>
+                                            <div class="col-10">
+                                                {% if citizen.test.is_positive %}
+                                                    <span class="badge badge-danger">Positiv</span>
+                                                {% elif citizen.test.is_negative %}
+                                                    <span class="badge badge-success">Negativ</span>
+                                                {% else %}
+                                                    <span class="badge badge-info">Auswertung läuft</span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <h4 class="text-muted">Kontaktpersonen</h4>
+                    <div class="container py-2">
+                        <!-- timeline item 1 -->
+                        {% for i in times %}
+                            <!-- timeline item 1 -->
+                            <div class="row no-gutters">
+                                {% if i|divisibleby:2 %}
+                                    <div class="col-sm"> <!--spacer--> </div>
+                                    <!-- timeline item 1 center dot -->
+                                    <div class="col-sm-1 text-center flex-column d-none d-sm-flex">
+                                        <div class="row h-50">
+                                            <div class="col border-right">&nbsp;</div>
+                                            <div class="col">&nbsp;</div>
+                                        </div>
+                                        <h5 class="m-2">
+                                            <span class="badge badge-pill bg-light border">&nbsp;</span>
+                                        </h5>
+                                        <div class="row h-50">
+                                            <div class="col border-right">&nbsp;</div>
+                                            <div class="col">&nbsp;</div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                <!-- timeline item 1 event content -->
+                                <div class="col-sm py-2">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="float-right text-muted small" style="font-size: 12px">Jan 9th
+                                                2019 7:00 AM
+                                            </div>
+                                            <h5 class="card-title text-muted">Michael Perk</h5>
+                                            <p class="card-text">Beim Essen im Restaurant</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/row-->
+                                <!-- timeline item 2 -->
+                                {% if not i|divisibleby:2 %}
+                                    <div class="col-sm-1 text-center flex-column d-none d-sm-flex">
+                                        <div class="row h-50">
+                                            <div class="col border-right">&nbsp;</div>
+                                            <div class="col">&nbsp;</div>
+                                        </div>
+                                        <h5 class="m-2">
+                                            <span class="badge badge-pill bg-success">&nbsp;</span>
+                                        </h5>
+                                        <div class="row h-50">
+                                            <div class="col border-right">&nbsp;</div>
+                                            <div class="col">&nbsp;</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm"> <!--spacer--> </div>
+                                {% endif %}
+                            </div>
+                            <!--/row-->
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+
+    <script>
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+        })
+    </script>
+{% endblock %}

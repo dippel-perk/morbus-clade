@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseNotFound
 from .forms import CitizenForm, ContactPersonForm
-from .models import AccessToken
+from .models import AccessToken, Citizen
 from health.models import User
 from django.contrib import messages
 from datetime import datetime, timedelta
@@ -13,6 +13,11 @@ def show(request, token):
         token_object = AccessToken.objects.get(token=token)
         return render(request, "citizens/show.html", {"citizen": token_object.citizen, "token": token})
     return HttpResponseNotFound()
+
+
+def citizen_detail(request, pk):
+    citizen = get_object_or_404(Citizen, pk=pk)
+    return render(request, 'citizens/detail.html', {'citizen': citizen, 'times': range(10)})
 
 
 def create(request):
