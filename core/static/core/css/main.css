@@ -2,9 +2,7 @@ body
 {
   font-family: 'Roboto', sans-serif !important;
 }
-.container {
-  max-width: 960px;
-}
+
 
 /*
  * Custom translucent site header

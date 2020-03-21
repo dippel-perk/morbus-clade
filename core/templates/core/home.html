@@ -1,22 +1,111 @@
 {% extends "core/base.html" %}
 {% load l10n %}
-
+{% load static %}
 {% block content %}
 
-<div class="bg-light">
-    <div class="col-md-5 p-lg-5 mx-auto">
-        <h1 class="display-4 font-weight-normal">Punny headline</h1>
-        <p class="lead font-weight-normal">And an even wittier subheading to boot. Jumpstart your marketing efforts with
-            this example based on Apple's marketing pages.</p>
-        <a class="btn btn-outline-secondary" href="#">Coming soon</a>
+    <div class="bg-light">
+        <div class="container py-5 px-5">
+            <h1 class="display-4 font-weight-normal">SARS-CoV-2 Testregister</h1>
+            <p class="lead font-weight-normal">
+                Mit einem exponentiellen Wachstum von Infizierten in dieser Krise, werden schon bald alle
+                Gesundheitsämter in Deutschland keine Kapazitäten mehr haben, um die Testprozesse gewissenhaft und
+                schnell zu organisieren. Unsere Plattform setzt genau an diesem Problem an und hilft den Teststationen
+                Corona Tests schnell durchzuführen und Auswertungen und Anfragen des Gesundheitsamts automatisch zu
+                versenden und auszuwerten.
+            </p>
+            <a class="btn btn-outline-secondary" href="#">Mehr Lesen</a>
+        </div>
+        <div class="product-device box-shadow d-none d-md-block"></div>
+        <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
     </div>
-    <div class="product-device box-shadow d-none d-md-block"></div>
-    <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
-</div>
 
-    <div class="bg-white">
+    <div class="bg-white py-5">
+        <div class="container py-5">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6 order-2 order-lg-1">
+                    <i class="fas fa-chart-bar fa-2x text-primary float-left mr-3"></i>
+                    <h2 class="font-weight-light">Erfassung neuer Fälle</h2>
+                    <p class="font-italic text-muted mb-4">Profitiere von einem automatischen Testmanagement: Suche dir
+                        eine geeignete Teststation in deiner Nähe und schließe deine Registrierung vor Testantritt
+                        ab.</p>
+
+                </div>
+                <div class="col-lg-5 px-5 mx-auto order-1 order-lg-2">
+                    <img src="{% static "core/img/planning.jpg" %}" alt="" class="img-fluid mb-4 mb-lg-0">
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-5 px-5 mx-auto">
+                    <img src="{% static "core/img/qr-code.jpg" %}" alt="" class="img-fluid rounded-circle mb-4 mb-lg-0">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="font-weight-light">Schnelles Testen</h2>
+                    <p class="font-italic text-muted mb-4">Zeige dem medizinischen Personal vor Ort einfach deinen QR
+                        Code und lass' dich direkt testen.</p>
+                    <a href="{% url "citizen-create" %}" class="btn btn-light px-5 rounded-pill shadow-sm">Jetzt
+                        anmelden</a>
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-6">
+                    <h2 class="font-weight-light">Helfe bei der Auswertung</h2>
+                    <p class="font-italic text-muted mb-4">Durch die Nutzung des Tools hilfst du deinem Gesundheitsamt
+                        bei der Auswertung deiner Daten. Dadurch können andere Aufgaben wie die Benachtrichtigung von
+                        Kontaktpersonen schneller erledigt werden.</p>
+                    <a href="{% url "citizen-create" %}" class="btn btn-light px-5 rounded-pill shadow-sm">Jetzt
+                        anmelden</a>
+                </div>
+                <div class="col-lg-5 px-5 mx-auto">
+                    <img src="{% static "core/img/evaluation.png" %}" alt=""
+                         class="img-fluid rounded-circle mb-4 mb-lg-0">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-light py-4">
+
         <div class="container">
-            <div id="map" class="m-4" style="width: 100%; height: 600px"></div>
+
+            <h1>So funktioniert's</h1>
+            <div class="text-muted">
+                Gesundheitsämter, Teststationen und Labore besitzen gesonderte Benutzeraccounts, um Testanfragen zu
+                stellen, Testergebnisse zu aktualisieren sowie Daten von Bürgern einzusehen und zu aggregieren.
+
+                Bürger können weiterhin entscheiden, ob sie sich online oder offline testen lassen möchten. Der "Online"
+                Test mit unserer Plattform bringt mehrere Vorteile, die alle die eine Email Adresse haben zu schätzen
+                wissen werden.
+                Wenn ein Bürger von einem Arzt einen Test verschrieben bekommt, meldet er sich bei der Seite mit einer
+                Email Adresse an. Die Email Adresse ist das Hauptkommunikationsmedium im folgenden Prozess. Wenn der
+                Bürger sich nun zu einer Teststation beginnt zeig er vor der Abstrichentnahme den QR Code, den er/sie
+                nach der Registrierung zugesandt bekommen hat. Die Teststation kann so ohne weitere Datenerfassung
+                direkt eine Probe mit dem Bürger verknüpfen.
+
+                Nachdem das Testlabor die Probe geprüft hat, wird sie anhand der Identifikationsnummer auf der Probe den
+                Status des Tests für den jeweiligen Bürger auf positiv oder negativ setzen. Sobald die Ergebnisse
+                eingetragen wurden erhält der Bürger eine Email mit einem Link zur Plattform. Sollte der Bürger positiv
+                getestet worden sein, kann er direkt über diesen Link seine Kontaktpersonen eintragen sowie
+                Aufenthaltsorte auf einer Karte markieren.
+
+                Im Benutzeraccount des Gesundheitsamts werden alle Tests, die von Teststationen in ihrem Bereich erfasst
+                wurden in einer Zusammenfassung angezeigt. Zu jedem (neuen) positiv getesteten Bürger können direkt alle
+                Informationen wie Kontaktpersonen oder Aufenhaltsorte angezeigt werden.
+
+                Eine aggregierte Ansicht der Aufenthaltsorte erlaubt es dem Gesundheitsamt bestimmte Risikogebiete bzw.
+                Orte an denen sich viele Infizierte aufgehalten haben in einer gesonderten Meldung an die Bürger
+                weiterzugeben.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="bg-light py-4">
+        <div class="container">
+
+            <h1 class="font-weight-normal">Finde Teststationen in deiner Nähe</h1>
+            <div id="map" style="width: 100%; height: 600px"></div>
         </div>
     </div>
 
@@ -46,7 +135,8 @@
 
             var test_station_icon =
                 {
-                    path: "M46.08-24.119v-6.912q0-.504-.324-.828t-.828-.324h-8.064v-8.064q0-.504-.324-.828t-.828-.324h-6.912q-.504 0-.828.324t-.324.828v8.064h-8.064q-.504 0-.828.324t-.324.828v6.912q0 .504.324.828t.828.324h8.064v8.064q0 .504.324.828t.828.324h6.912q.504 0 .828-.324t.324-.828v-8.064h8.064q.504 0 .828-.324t.324-.828zm-23.04-26.496h18.432v-4.608h-18.432v4.608zm-13.824 0v46.08h-1.152q-3.312 0-5.688-2.376t-2.376-5.688v-29.952q0-3.312 2.376-5.688t5.688-2.376h1.152zm42.624 0v46.08h-39.168v-46.08h5.76v-5.76q0-1.44 1.008-2.448t2.448-1.008h20.736q1.44 0 2.448 1.008t1.008 2.448v5.76h5.76zm12.672 8.064v29.952q0 3.312-2.376 5.688t-5.688 2.376h-1.152v-46.08h1.152q3.312 0 5.688 2.376t2.376 5.688z","FIGHTER_JET":"M69.12-29.879q-.036 1.152-10.368 3.456l-12.672 1.152-8.064 2.304h-2.304l-10.548 12.672h2.484q.936 0 1.62.162t.684.414-.684.414-1.62.162h-11.52v-1.152h2.304v-14.976h-5.76l-6.912 8.064h-3.456l-1.152-1.152v-6.912h1.152v-1.152h4.608v-.288l-6.912-.864v-4.608l6.912-.864v-.288h-4.608v-1.152h-1.152v-6.912l1.152-1.152h3.456l6.912 8.064h5.76v-14.976h-2.304v-1.152h11.52q.936 0 1.62.162t.684.414-.684.414-1.62.162h-2.484l10.548 12.672h2.304l8.064 2.304 12.672 1.152q9.396 2.088 10.332 3.348z",
+                    path: "M46.08-24.119v-6.912q0-.504-.324-.828t-.828-.324h-8.064v-8.064q0-.504-.324-.828t-.828-.324h-6.912q-.504 0-.828.324t-.324.828v8.064h-8.064q-.504 0-.828.324t-.324.828v6.912q0 .504.324.828t.828.324h8.064v8.064q0 .504.324.828t.828.324h6.912q.504 0 .828-.324t.324-.828v-8.064h8.064q.504 0 .828-.324t.324-.828zm-23.04-26.496h18.432v-4.608h-18.432v4.608zm-13.824 0v46.08h-1.152q-3.312 0-5.688-2.376t-2.376-5.688v-29.952q0-3.312 2.376-5.688t5.688-2.376h1.152zm42.624 0v46.08h-39.168v-46.08h5.76v-5.76q0-1.44 1.008-2.448t2.448-1.008h20.736q1.44 0 2.448 1.008t1.008 2.448v5.76h5.76zm12.672 8.064v29.952q0 3.312-2.376 5.688t-5.688 2.376h-1.152v-46.08h1.152q3.312 0 5.688 2.376t2.376 5.688z",
+                    "FIGHTER_JET": "M69.12-29.879q-.036 1.152-10.368 3.456l-12.672 1.152-8.064 2.304h-2.304l-10.548 12.672h2.484q.936 0 1.62.162t.684.414-.684.414-1.62.162h-11.52v-1.152h2.304v-14.976h-5.76l-6.912 8.064h-3.456l-1.152-1.152v-6.912h1.152v-1.152h4.608v-.288l-6.912-.864v-4.608l6.912-.864v-.288h-4.608v-1.152h-1.152v-6.912l1.152-1.152h3.456l6.912 8.064h5.76v-14.976h-2.304v-1.152h11.52q.936 0 1.62.162t.684.414-.684.414-1.62.162h-2.484l10.548 12.672h2.304l8.064 2.304 12.672 1.152q9.396 2.088 10.332 3.348z",
                     fillColor: '#e3795e',
                     fillOpacity: 1,
                     strokeWeight: 0,
@@ -65,15 +155,13 @@
 
             var icon = test_station_icon;
 
-            if(is_hp)
-            {
+            if (is_hp) {
                 icon = health_department_icon;
-            } else if(is_lab)
-            {
+            } else if (is_lab) {
                 icon = lab_icon;
             }
 
-            var marker = new google.maps.Marker({position: location, map: map, visible: true, icon:icon});
+            var marker = new google.maps.Marker({position: location, map: map, visible: true, icon: icon});
         }
 
         function initMap() {

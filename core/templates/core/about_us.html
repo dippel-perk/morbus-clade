@@ -1,18 +1,18 @@
 {% extends "core/base.html" %}
-
+{% load static %}
 {% block content %}
 
 <div class="bg-light">
   <div class="container py-5">
     <div class="row h-100 align-items-center py-5">
       <div class="col-lg-6">
-        <h1 class="display-4">About us page</h1>
-        <p class="lead text-muted mb-0">Create a minimal about us page using Bootstrap 4.</p>
+        <h1 class="display-4">Über Uns</h1>
+        <p class="lead text-muted mb-0">Diese Seite ist im Zuge des .</p>
         <p class="lead text-muted">Snippet by <a href="https://bootstrapious.com/snippets" class="text-muted">
                     <u>Bootstrapious</u></a>
         </p>
       </div>
-      <div class="col-lg-6 d-none d-lg-block"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556834136/illus_kftyh4.png" alt="" class="img-fluid"></div>
+      <div class="col-lg-6 d-none d-lg-block"><img src="{% static "core/img/wirvsviruslogo.png" %}" alt="" class="img-fluid"></div>
     </div>
   </div>
 </div>
