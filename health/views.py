@@ -3,15 +3,23 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseNotFound
 from .models import User, Test
 from citizens.models import Citizen, AccessToken
+from django.core import serializers
 
 
 @login_required
 def home(request):
     if request.user.is_health_department:
-        return render(request, 'health/health_department/home.html')
+        citizens = Citizen.objects.all()
+        citizens_json = serializers.serialize("json", citizens)
+        return render(request, 'health/health_department/home.html', {'citizens': citizens_json})
 
 
-#@login_required
+def citizen_detail(request):
+    if request.user.is_health_department:
+        return render(request, 'health/health_department/detail.html')
+
+
+# @login_required
 def create_test(request):
     if request.method == "POST":
         token = get_object_or_404(AccessToken, token=request.POST.get("token", ""))
@@ -27,7 +35,8 @@ def create_test(request):
 
     return HttpResponseNotFound()
 
-#@login_required
+
+# @login_required
 def update_test_result(request):
     if request.method == "POST":
         token = get_object_or_404(AccessToken, token=request.POST.get("token", ""))
