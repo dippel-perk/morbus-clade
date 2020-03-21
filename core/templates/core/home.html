@@ -42,8 +42,6 @@
                     <h2 class="font-weight-light">Schnelles Testen</h2>
                     <p class="font-italic text-muted mb-4">Zeige dem medizinischen Personal vor Ort einfach deinen QR
                         Code und lass' dich direkt testen.</p>
-                    <a href="{% url "citizen-create" %}" class="btn btn-light px-5 rounded-pill shadow-sm">Jetzt
-                        anmelden</a>
                 </div>
             </div>
 
@@ -51,17 +49,39 @@
 
                 <div class="col-lg-6">
                     <h2 class="font-weight-light">Helfe bei der Auswertung</h2>
-                    <p class="font-italic text-muted mb-4">Durch die Nutzung des Tools hilfst du deinem Gesundheitsamt
-                        bei der Auswertung deiner Daten. Dadurch können andere Aufgaben wie die Benachrichtigung von
-                        Kontaktpersonen schneller erledigt werden.</p>
-                    <a href="{% url "citizen-create" %}" class="btn btn-light px-5 rounded-pill shadow-sm">Jetzt
-                        anmelden</a>
+                    <p class="font-italic text-muted mb-4">Im Benutzeraccount des Gesundheitsamts werden alle Tests, die
+                        von Teststationen in ihrem Bereich erfasst
+                        wurden in einer Zusammenfassung angezeigt. Zu jedem (neuen) positiv getesteten Bürger können
+                        direkt alle
+                        Informationen wie Kontaktpersonen oder Aufenhaltsorte angezeigt werden.
+
+                        Eine aggregierte Ansicht der Aufenthaltsorte erlaubt es dem Gesundheitsamt bestimmte
+                        Risikogebiete bzw.
+                        Orte an denen sich viele Infizierte aufgehalten haben in einer gesonderten Meldung an die Bürger
+                        weiterzugeben.</p>
                 </div>
                 <div class="col-lg-5 px-5 mx-auto">
                     <img src="{% static "core/img/evaluation.png" %}" alt=""
                          class="img-fluid rounded-circle mb-4 mb-lg-0">
                 </div>
             </div>
+
+            <div class="row align-items-center">
+                <div class="col-lg-5 px-5 mx-auto">
+                    <img src="{% static "core/img/best-seller.png" %}" alt="" class="img-fluid rounded-circle p-4 mb-4 mb-lg-0">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="font-weight-light">Du hast die Wahl</h2>
+                    <p class="font-italic text-muted mb-4">Bürger können weiterhin entscheiden, ob sie sich online oder
+                        offline testen lassen möchten. Der "Online"
+                        Test mit unserer Plattform bringt mehrere Vorteile, die alle die eine Email Adresse haben zu
+                        schätzen
+                        wissen werden.</p>
+                    <a href="{% url "citizen-create" %}" class="btn btn-light px-5 rounded-pill shadow-sm">Jetzt
+                        anmelden</a>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -70,39 +90,13 @@
         <div class="container">
 
             <h1>So funktioniert's</h1>
-            <div class="text-muted">
-                Gesundheitsämter, Teststationen und Labore besitzen gesonderte Benutzeraccounts, um Testanfragen zu
-                stellen, Testergebnisse zu aktualisieren sowie Daten von Bürgern einzusehen und zu aggregieren.
-
-                Bürger können weiterhin entscheiden, ob sie sich online oder offline testen lassen möchten. Der "Online"
-                Test mit unserer Plattform bringt mehrere Vorteile, die alle die eine Email Adresse haben zu schätzen
-                wissen werden.
-                Wenn ein Bürger von einem Arzt einen Test verschrieben bekommt, meldet er sich bei der Seite mit einer
-                Email Adresse an. Die Email Adresse ist das Hauptkommunikationsmedium im folgenden Prozess. Wenn der
-                Bürger sich nun zu einer Teststation beginnt zeig er vor der Abstrichentnahme den QR Code, den er/sie
-                nach der Registrierung zugesandt bekommen hat. Die Teststation kann so ohne weitere Datenerfassung
-                direkt eine Probe mit dem Bürger verknüpfen.
-
-                Nachdem das Testlabor die Probe geprüft hat, wird sie anhand der Identifikationsnummer auf der Probe den
-                Status des Tests für den jeweiligen Bürger auf positiv oder negativ setzen. Sobald die Ergebnisse
-                eingetragen wurden erhält der Bürger eine Email mit einem Link zur Plattform. Sollte der Bürger positiv
-                getestet worden sein, kann er direkt über diesen Link seine Kontaktpersonen eintragen sowie
-                Aufenthaltsorte auf einer Karte markieren.
-
-                Im Benutzeraccount des Gesundheitsamts werden alle Tests, die von Teststationen in ihrem Bereich erfasst
-                wurden in einer Zusammenfassung angezeigt. Zu jedem (neuen) positiv getesteten Bürger können direkt alle
-                Informationen wie Kontaktpersonen oder Aufenhaltsorte angezeigt werden.
-
-                Eine aggregierte Ansicht der Aufenthaltsorte erlaubt es dem Gesundheitsamt bestimmte Risikogebiete bzw.
-                Orte an denen sich viele Infizierte aufgehalten haben in einer gesonderten Meldung an die Bürger
-                weiterzugeben.
-            </div>
 
             <div class="container py-2">
                 <div class="container py-2">
-                    {% include 'core/partials/_timeline_item_right.html' with img_path="core/img/document.png" title='1. Anmelden' text='Wenn ein Bürger von einem Arzt einen Test verschrieben bekommt, meldet er sich bei der Seite mit einer Email Adresse an. Die Email Adresse ist das Hauptkommunikationsmedium im folgenden Prozess.' %}
-                    {% include 'core/partials/_timeline_item_left.html' with img_path="core/img/document.png" title='2. Testen' text='Wenn der Bürger sich nun zu einer Teststation beginnt zeig er vor der Abstrichentnahme den QR Code, den er/sie nach der Registrierung zugesandt bekommen hat. Die Teststation kann so ohne weitere Datenerfassung direkt eine Probe mit dem Bürger verknüpfen' %}
-                     {% include 'core/partials/_timeline_item_right.html' with img_path="core/img/science.png" title='3. Auswertung' text='Nachdem das Testlabor die Probe geprüft hat, wird sie anhand der Identifikationsnummer auf der Probe den Status des Tests für den jeweiligen Bürger auf positiv oder negativ setzen.'%}
+                    {% include 'core/partials/_timeline_item_right.html' with step=1 img_path="core/img/document.png" title='Anmelden' text='Wenn ein Bürger von einem Arzt einen Test verschrieben bekommt, meldet er sich bei der Seite mit einer Email Adresse an. Die Email Adresse ist das Hauptkommunikationsmedium im folgenden Prozess.' %}
+                    {% include 'core/partials/_timeline_item_left.html' with step=2 img_path="core/img/virus-test.png" title='Testen' text='Wenn der Bürger sich nun zu einer Teststation beginnt zeig er vor der Abstrichentnahme den QR Code, den er/sie nach der Registrierung zugesandt bekommen hat. Die Teststation kann so ohne weitere Datenerfassung direkt eine Probe mit dem Bürger verknüpfen' %}
+                    {% include 'core/partials/_timeline_item_right.html' with step=3 img_path="core/img/science.png" title='Auswertung' text='Nachdem das Testlabor die Probe geprüft hat, wird sie anhand der Identifikationsnummer auf der Probe den Status des Tests für den jeweiligen Bürger auf positiv oder negativ setzen. Sobald die Ergebnisse eingetragen wurden erhält der Bürger eine Email mit einem Link zur Plattform.' %}
+                    {% include 'core/partials/_timeline_item_left.html' with step=4 img_path="core/img/group.png" title='Kontaktpersonen hinzufügen' text='Sollte der Bürger positiv getestet worden sein, kann er direkt über diesen Link seine Kontaktpersonen eintragen sowie Aufenthaltsorte auf einer Karte markieren.' %}
                 </div>
             </div>
         </div>
