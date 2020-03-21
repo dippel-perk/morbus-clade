@@ -13,7 +13,7 @@ def home(request):
 def show(request, token):
     if request.method == "GET":
         token_object = AccessToken.objects.get(token=token)
-        return render(request, "citizens/show.html", {"citizen": token_object.citizen})
+        return render(request, "citizens/show.html", {"citizen": token_object.citizen, "token": token})
 
     return HttpResponseNotFound()
 
