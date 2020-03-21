@@ -15,9 +15,11 @@ def show(request, token):
     return HttpResponseNotFound()
 
 
-def citizen_detail(request, pk):
-    citizen = get_object_or_404(Citizen, pk=pk)
-    return render(request, 'citizens/detail.html', {'citizen': citizen, 'times': range(10)})
+def citizen_detail(request, token):
+    if request.method == "GET":
+        token_object = AccessToken.objects.get(token=token)
+        return render(request, 'citizens/detail.html', {'citizen': token_object.citizen, 'times': range(10)})
+    return HttpResponseNotFound()
 
 
 def create(request):
@@ -49,7 +51,7 @@ def add_contact_person(request, token):
                     contact_person.save()
 
                     messages.success(request, "Die Kontaktperson erfolgreich hinzugefügt.")
-                    return redirect('citizen-show', token=token_object.token)
+                    return redirect('detail', token=token_object.token)
             else:
                 form = ContactPersonForm()
 
@@ -62,4 +64,3 @@ def add_contact_person(request, token):
         return HttpResponseNotFound()
     except Test.DoesNotExist:
         return HttpResponseNotFound()
-
