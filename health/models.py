@@ -5,7 +5,7 @@ from citizens.models import Citizen
 
 class User(AbstractUser):
 
-    display_name = models.CharField(max_length=30, default="Anonym")
+    display_name = models.CharField(max_length=100, default="Anonym")
 
     is_health_department = models.BooleanField(default=False)
     is_laboratory = models.BooleanField(default=False)
