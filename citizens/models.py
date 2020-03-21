@@ -2,6 +2,7 @@ from django.db import models
 from datetime import datetime, timedelta
 
 from django.utils.crypto import get_random_string
+from phonenumber_field.modelfields import PhoneNumberField
 
 class Citizen(models.Model):
 
@@ -9,6 +10,7 @@ class Citizen(models.Model):
     last_name = models.CharField(max_length=30)
 
     email = models.EmailField()
+    telephone = PhoneNumberField()
 
     date_of_birth = models.DateField()
 
@@ -29,5 +31,13 @@ class AccessToken(models.Model):
     is_write = models.BooleanField(default=False)
 
     expired = models.DateTimeField(default=one_week_hence)
+
+class ContactPerson(models.ForeignKey):
+
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+
+    email = models.EmailField()
+    telephone = PhoneNumberField()
 
 

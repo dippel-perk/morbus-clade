@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'citizens.apps.CitizensConfig',
     'health.apps.HealthConfig',
+    'phonenumber_field',
     'crispy_forms',
 
 ]
