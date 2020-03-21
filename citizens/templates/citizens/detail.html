@@ -13,7 +13,7 @@
                     <div class="col-6">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">{{ citizen.first_name }} {{ citizen.last_name }}</h5>
+                                <h5 class="card-title text-muted">{{ citizen.first_name }} {{ citizen.last_name }}</h5>
                                 <div class="card-text">
                                     <div class="container">
                                         <div class="row">
@@ -49,7 +49,7 @@
                     <div class="col-6">
                         <div class="card" style="height: 100%">
                             <div class="card-body">
-                                <h5 class="card-title">Testablauf</h5>
+                                <h5 class="card-title text-muted">Testablauf</h5>
                                 <div class="card-text">
                                     {% if citizen.test %}
                                         <div class="row mt-2">
@@ -89,65 +89,78 @@
                     </div>
                 </div>
                 <div class="row mt-5">
-                    <h4 class="text-muted">Kontaktpersonen</h4>
-                    <div class="container py-2">
+                    <div class="col-4">
+                        <h4 class="text-muted">Kontaktpersonen</h4>
+                    </div>
+                    <div class="col-8">
+                        <div class="float-right text-muted">
+                            <span class="badge badge-pill bg-success border">&nbsp;</span> Gering
+                            <span class="ml-3 badge badge-pill bg-warning border">&nbsp;</span> Mittelstark
+                            <span class="ml-3 badge badge-pill bg-danger border">&nbsp;</span> Hoch
+                            <a href="{% url 'citizen-add-contact-person' citizen.access_token.token %}"><button class="ml-5 btn btn-primary">Hinzufügen</button></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="container py-2">
+                    <!-- timeline item 1 -->
+                    {% for person in citizen.contact_persons.all %}
                         <!-- timeline item 1 -->
-                        {% for i in times %}
-                            <!-- timeline item 1 -->
-                            <div class="row no-gutters">
-                                {% if i|divisibleby:2 %}
-                                    <div class="col-sm"> <!--spacer--> </div>
-                                    <!-- timeline item 1 center dot -->
-                                    <div class="col-sm-1 text-center flex-column d-none d-sm-flex">
-                                        <div class="row h-50">
-                                            <div class="col border-right">&nbsp;</div>
-                                            <div class="col">&nbsp;</div>
-                                        </div>
-                                        <h5 class="m-2">
-                                            <span class="badge badge-pill bg-light border">&nbsp;</span>
-                                        </h5>
-                                        <div class="row h-50">
-                                            <div class="col border-right">&nbsp;</div>
-                                            <div class="col">&nbsp;</div>
-                                        </div>
+                        <div class="row no-gutters">
+                            {% if forloop.counter|divisibleby:2 %}
+                                <div class="col-sm"> <!--spacer--> </div>
+                                <!-- timeline item 1 center dot -->
+                                <div class="col-sm-1 text-center flex-column d-none d-sm-flex">
+                                    <div class="row h-50">
+                                        <div class="col border-right">&nbsp;</div>
+                                        <div class="col">&nbsp;</div>
                                     </div>
-                                {% endif %}
+                                    <h5 class="m-2">
+                                        <span class="badge badge-pill border {% if person.is_intensity_low %}bg-success{% endif %} {% if person.is_intensity_medium %}bg-warning{% endif %}{% if person.is_intensity_high %}bg-danger{% endif %}">&nbsp;</span>
+                                    </h5>
+                                    <div class="row h-50">
+                                        <div class="col border-right">&nbsp;</div>
+                                        <div class="col">&nbsp;</div>
+                                    </div>
+                                </div>
+                            {% endif %}
 
-                                <!-- timeline item 1 event content -->
-                                <div class="col-sm py-2">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="float-right text-muted small" style="font-size: 12px">Jan 9th
-                                                2019 7:00 AM
-                                            </div>
-                                            <h5 class="card-title text-muted">Michael Perk</h5>
-                                            <p class="card-text">Beim Essen im Restaurant</p>
+                            <!-- timeline item 1 event content -->
+                            <div class="col-sm py-2">
+                                <div class="card {% if person.is_intensity_low %}border-success{% endif %} {% if person.is_intensity_medium %}border-warning{% endif %}{% if person.is_intensity_high %}border-danger{% endif %}">
+                                    <div class="card-body">
+                                        <div class="float-right text-muted small"
+                                             style="font-size: 12px">{{ person.last_contact }}
+                                        </div>
+                                        <h5 class="card-title text-muted">{{ person.first_name }} {{ person.last_name }}</h5>
+                                        <div class="card-text">
+                                            <p>{{ person.description }}</p>
+                                            {% include "core/partials/_icon_text.html" with icon='fa-envelope' text=person.email %}
+                                            {% include "core/partials/_icon_text.html" with icon='fa-phone' text=person.telephone %}
                                         </div>
                                     </div>
                                 </div>
-                                <!--/row-->
-                                <!-- timeline item 2 -->
-                                {% if not i|divisibleby:2 %}
-                                    <div class="col-sm-1 text-center flex-column d-none d-sm-flex">
-                                        <div class="row h-50">
-                                            <div class="col border-right">&nbsp;</div>
-                                            <div class="col">&nbsp;</div>
-                                        </div>
-                                        <h5 class="m-2">
-                                            <span class="badge badge-pill bg-success">&nbsp;</span>
-                                        </h5>
-                                        <div class="row h-50">
-                                            <div class="col border-right">&nbsp;</div>
-                                            <div class="col">&nbsp;</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm"> <!--spacer--> </div>
-                                {% endif %}
                             </div>
                             <!--/row-->
-                        {% endfor %}
-
-                    </div>
+                            <!-- timeline item 2 -->
+                            {% if not forloop.counter|divisibleby:2 %}
+                                <div class="col-sm-1 text-center flex-column d-none d-sm-flex">
+                                    <div class="row h-50">
+                                        <div class="col border-right">&nbsp;</div>
+                                        <div class="col">&nbsp;</div>
+                                    </div>
+                                    <h5 class="m-2">
+                                        <span class="badge badge-pill {% if person.is_intensity_low %}bg-success{% endif %} {% if person.is_intensity_medium %}bg-warning{% endif %}{% if person.is_intensity_high %}bg-danger{% endif %}">&nbsp;</span>
+                                    </h5>
+                                    <div class="row h-50">
+                                        <div class="col border-right">&nbsp;</div>
+                                        <div class="col">&nbsp;</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm"> <!--spacer--> </div>
+                            {% endif %}
+                        </div>
+                        <!--/row-->
+                    {% endfor %}
                 </div>
             </div>
         </div>

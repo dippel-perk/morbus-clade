@@ -99,7 +99,7 @@
                 methods: {
                     showDetail(citizen) {
                         console.log(citizen);
-                        window.location.href = "{% url "detail" %}/" + citizen.id;
+                        window.location.href = "{% url "citizen-detail-pk" pk=12345 %}".replace(/12345/, citizen.id.toString());
                     }
                 },
                 mounted() {

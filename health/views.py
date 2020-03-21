@@ -14,6 +14,14 @@ def home(request):
         return render(request, 'health/health_department/home.html', {'citizens': citizens_json})
 
 
+@login_required
+def citizen_detail_pk(request, pk):
+    if request.method == "GET":
+        citizen = get_object_or_404(Citizen, pk=pk)
+        return render(request, 'citizens/detail.html', {'citizen': citizen, 'times': range(10)})
+    return HttpResponseNotFound()
+
+
 # @login_required
 def create_test(request):
     if request.method == "POST":
