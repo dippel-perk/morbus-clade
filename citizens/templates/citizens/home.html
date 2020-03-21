@@ -1,0 +1,39 @@
+{% extends "citizens/base.html" %}
+
+{% load l10n %}
+
+{% block content %}
+
+    <div class="container">
+        <div id="map" class="m-4" style="width: 100%; height: 600px"></div>
+    </div>
+
+
+{% endblock %}
+
+{% block script %}
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAivOinGS-mxd9Unot-K6vbmmXOKpxWKl0&callback=initMap">
+    </script>
+
+    <script>
+
+        function addMarker(map, lat, long) {
+            var location = new google.maps.LatLng(lat, long);
+            var marker = new google.maps.Marker({position: location, map: map, visible: true});
+        }
+
+        function initMap() {
+            var center = {lat: 52.150002, lng: 10.333333};
+            var map = new google.maps.Map(
+                document.getElementById('map'), {zoom: 5, center: center});
+            var markers = [];
+            {% for station in stations %}
+                addMarker(map, {{station.latitude | unlocalize}}, {{station.longitude | unlocalize}});
+            {% endfor %}
+            //var m2 = new google.maps.Marker({position: center, map: map, visible: true});
+        }
+    </script>
+
+{% endblock %}

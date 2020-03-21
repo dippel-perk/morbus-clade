@@ -2,6 +2,13 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseNotFound
 from .forms import CitizenForm
 from .models import AccessToken
+from health.models import User
+
+
+def home(request):
+    users = User.objects.all()
+    return render(request, "citizens/home.html", {'stations': users})
+
 
 def show(request, token):
     if request.method == "GET":
@@ -9,6 +16,7 @@ def show(request, token):
         return render(request, "citizens/show.html", {"citizen": token_object.citizen})
 
     return HttpResponseNotFound()
+
 
 def create(request):
     if request.method == "POST":

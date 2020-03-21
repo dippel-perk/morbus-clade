@@ -7,8 +7,21 @@
       "is_health_department": true,
       "is_active": true,
       "is_superuser": false,
-      "longitude": 52.286453,
-      "latitude": 10.520002,
+      "longitude": 10.520002,
+      "latitude": 52.286453,
+      "password": "pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE="
+    }
+  },
+  {
+    "pk": 2,
+    "model": "health.User",
+    "fields": {
+      "username": "Test Station 1",
+      "is_test_station": true,
+      "is_active": true,
+      "is_superuser": false,
+      "longitude": 10.333333,
+      "latitude": 52.150002,
       "password": "pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE="
     }
   }
