@@ -4,10 +4,10 @@
 {% block content %}
     <div class="position-relative overflow-hidden bg-light">
         <div class="container p-4 d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 25rem;">
                 <img src="{% static "citizens/qr-code.png" %}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Jonas Dippel</h5>
+                    <h5 class="card-title">{{ citizen.first_name }} {{ citizen.last_name }}</h5>
                     <div class="card-text">
                         <div class="container">
                             <div class="row">
@@ -15,7 +15,7 @@
                                     <i class="pull-right fa fa-envelope"></i>
                                 </div>
                                 <div class="col-10">
-                                    <span>jonas.dippel@gmx.de</span>
+                                    <span>{{ citizen.email }}</span>
                                 </div>
                             </div>
                             <div class="row mt-2">
@@ -23,7 +23,7 @@
                                     <i class="pull-right fa fa-birthday-cake mr-2"></i>
                                 </div>
                                 <div class="col-10">
-                                    <span>26.06.1997</span>
+                                    <span>{{ citizen.date_of_birth }}</span>
                                 </div>
                             </div>
                             <div class="row mt-2">
@@ -31,7 +31,7 @@
                                     <i class="pull-right fa fa-map mr-2"></i>
                                 </div>
                                 <div class="col-10">
-                                    Fischerinsel 1 <br> 10179 Berlin
+                                    {{ citizen.address }} <br> {{ citizen.zip_code }} {{ citizen.city }}
                                 </div>
                             </div>
                         </div>
