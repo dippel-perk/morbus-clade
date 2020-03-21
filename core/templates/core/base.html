@@ -16,6 +16,8 @@
 
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -30,6 +32,9 @@
 
         <div class="text-right col-md-11 py-2">
             {% block header %}
+                <a class="d-inline-block mr-3" href="{% url "home" %}">Startseite</a>
+                <a class="d-inline-block mr-3" href="{% url "citizen-create" %}">Für Test anmelden</a>
+                <a class="d-inline-block" href="{% url "about-us" %}">Über uns</a>
             {% endblock %}
         </div>
     </div>

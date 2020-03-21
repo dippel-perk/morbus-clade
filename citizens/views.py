@@ -7,10 +7,6 @@ from django.contrib import messages
 from datetime import datetime, timedelta
 from health.models import Test
 
-def home(request):
-    users = User.objects.all()
-    return render(request, "citizens/home.html", {'stations': users})
-
 
 def show(request, token):
     if request.method == "GET":

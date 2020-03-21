@@ -1,8 +1,9 @@
 {% extends "core/base.html" %}
+{% load l10n %}
 
 {% block content %}
 
-<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+<div class="bg-light">
     <div class="col-md-5 p-lg-5 mx-auto my-5">
         <h1 class="display-4 font-weight-normal">Punny headline</h1>
         <p class="lead font-weight-normal">And an even wittier subheading to boot. Jumpstart your marketing efforts with
@@ -13,9 +14,79 @@
     <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
 </div>
 
+    <div class="bg-white">
+        <div class="container">
+            <div id="map" class="m-4" style="width: 100%; height: 600px"></div>
+        </div>
+    </div>
+
+
+
 
 {% endblock %}
 
 {% block script %}
 
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAivOinGS-mxd9Unot-K6vbmmXOKpxWKl0&callback=initMap">
+    </script>
+
+    <script>
+
+        function addMarker(map, lat, long, label, is_hp, is_ts, is_lab) {
+            var location = new google.maps.LatLng(lat, long);
+
+            var lab_icon = {
+                path: "M54.972-12.311q2.016 3.204.774 5.49t-5.058 2.286h-41.472q-3.816 0-5.058-2.286t.774-5.49l18.108-28.548v-14.364h-2.304q-.936 0-1.62-.684t-.684-1.62.684-1.62 1.62-.684h18.432q.936 0 1.62.684t.684 1.62-.684 1.62-1.62.684h-2.304v14.364zm-28.044-26.1l-9.792 15.444h25.632l-9.792-15.444-.72-1.116v-15.696000000000002h-4.608v15.696000000000002z",
+                fillColor: '#4ea053',
+                fillOpacity: 1,
+                strokeWeight: 0,
+                scale: 0.4
+            };
+
+            var test_station_icon =
+                {
+                    path: "M46.08-24.119v-6.912q0-.504-.324-.828t-.828-.324h-8.064v-8.064q0-.504-.324-.828t-.828-.324h-6.912q-.504 0-.828.324t-.324.828v8.064h-8.064q-.504 0-.828.324t-.324.828v6.912q0 .504.324.828t.828.324h8.064v8.064q0 .504.324.828t.828.324h6.912q.504 0 .828-.324t.324-.828v-8.064h8.064q.504 0 .828-.324t.324-.828zm-23.04-26.496h18.432v-4.608h-18.432v4.608zm-13.824 0v46.08h-1.152q-3.312 0-5.688-2.376t-2.376-5.688v-29.952q0-3.312 2.376-5.688t5.688-2.376h1.152zm42.624 0v46.08h-39.168v-46.08h5.76v-5.76q0-1.44 1.008-2.448t2.448-1.008h20.736q1.44 0 2.448 1.008t1.008 2.448v5.76h5.76zm12.672 8.064v29.952q0 3.312-2.376 5.688t-5.688 2.376h-1.152v-46.08h1.152q3.312 0 5.688 2.376t2.376 5.688z","FIGHTER_JET":"M69.12-29.879q-.036 1.152-10.368 3.456l-12.672 1.152-8.064 2.304h-2.304l-10.548 12.672h2.484q.936 0 1.62.162t.684.414-.684.414-1.62.162h-11.52v-1.152h2.304v-14.976h-5.76l-6.912 8.064h-3.456l-1.152-1.152v-6.912h1.152v-1.152h4.608v-.288l-6.912-.864v-4.608l6.912-.864v-.288h-4.608v-1.152h-1.152v-6.912l1.152-1.152h3.456l6.912 8.064h5.76v-14.976h-2.304v-1.152h11.52q.936 0 1.62.162t.684.414-.684.414-1.62.162h-2.484l10.548 12.672h2.304l8.064 2.304 12.672 1.152q9.396 2.088 10.332 3.348z",
+                    fillColor: '#e3795e',
+                    fillOpacity: 1,
+                    strokeWeight: 0,
+                    scale: 0.4
+                };
+
+            var health_department_icon =
+                {
+                    path: "M13.824-17.207v2.304q0 .468-.342.81t-.81.342h-2.304q-.468 0-.81-.342t-.342-.81v-2.304q0-.468.342-.81t.81-.342h2.304q.468 0 .81.342t.342.81zm0-9.216v2.304q0 .468-.342.81t-.81.342h-2.304q-.468 0-.81-.342t-.342-.81v-2.304q0-.468.342-.81t.81-.342h2.304q.468 0 .81.342t.342.81zm9.216 0v2.304q0 .468-.342.81t-.81.342h-2.304q-.468 0-.81-.342t-.342-.81v-2.304q0-.468.342-.81t.81-.342h2.304q.468 0 .81.342t.342.81zm-9.216-9.216v2.304q0 .468-.342.81t-.81.342h-2.304q-.468 0-.81-.342t-.342-.81v-2.304q0-.468.342-.81t.81-.342h2.304q.468 0 .81.342t.342.81zm27.648 18.432v2.304q0 .468-.342.81t-.81.342h-2.304q-.468 0-.81-.342t-.342-.81v-2.304q0-.468.342-.81t.81-.342h2.304q.468 0 .81.342t.342.81zm-9.216-9.216v2.304q0 .468-.342.81t-.81.342h-2.304q-.468 0-.81-.342t-.342-.81v-2.304q0-.468.342-.81t.81-.342h2.304q.468 0 .81.342t.342.81zm-9.216-9.216v2.304q0 .468-.342.81t-.81.342h-2.304q-.468 0-.81-.342t-.342-.81v-2.304q0-.468.342-.81t.81-.342h2.304q.468 0 .81.342t.342.81zm18.432 9.216v2.304q0 .468-.342.81t-.81.342h-2.304q-.468 0-.81-.342t-.342-.81v-2.304q0-.468.342-.81t.81-.342h2.304q.468 0 .81.342t.342.81zm-9.216-9.216v2.304q0 .468-.342.81t-.81.342h-2.304q-.468 0-.81-.342t-.342-.81v-2.304q0-.468.342-.81t.81-.342h2.304q.468 0 .81.342t.342.81zm9.216 0v2.304q0 .468-.342.81t-.81.342h-2.304q-.468 0-.81-.342t-.342-.81v-2.304q0-.468.342-.81t.81-.342h2.304q.468 0 .81.342t.342.81zm-9.216 31.104h13.824v-41.472h-9.216v1.152q0 1.44-1.008 2.448t-2.448 1.008h-16.128q-1.44 0-2.448-1.008t-1.008-2.448v-1.152h-9.216v41.472h13.824v-8.064q0-.468.342-.81t.81-.342h11.52q.468 0 .81.342t.342.81v8.064zm0-42.624v-11.52q0-.468-.342-.81t-.81-.342h-2.304q-.468 0-.81.342t-.342.81v3.456h-4.608v-3.456q0-.468-.342-.81t-.81-.342h-2.304q-.468 0-.81.342t-.342.81v11.52q0 .468.342.81t.81.342h2.304q.468 0 .81-.342t.342-.81v-3.456h4.608v3.456q0 .468.342.81t.81.342h2.304q.468 0 .81-.342t.342-.81zm18.432-1.152v46.08q0 .936-.684 1.62t-1.62.684h-46.08q-.936 0-1.62-.684t-.684-1.62v-46.08q0-.936.684-1.62t1.62-.684h11.52v-10.368q0-1.44 1.008-2.448t2.448-1.008h16.128q1.44 0 2.448 1.008t1.008 2.448v10.368h11.52q.936 0 1.62.684t.684 1.62z",
+                    fillColor: '#383739',
+                    fillOpacity: 1,
+                    strokeWeight: 0,
+                    scale: 0.4
+                };
+
+
+            var icon = test_station_icon;
+
+            if(is_hp)
+            {
+                icon = health_department_icon;
+            } else if(is_lab)
+            {
+                icon = lab_icon;
+            }
+
+            var marker = new google.maps.Marker({position: location, map: map, visible: true, icon:icon});
+        }
+
+        function initMap() {
+            var center = {lat: 52.272657, lng: 10.524826};
+            var map = new google.maps.Map(
+                document.getElementById('map'), {zoom: 13, center: center});
+            var markers = [];
+            {% for station in stations %}
+                addMarker(map, {{station.latitude | unlocalize}}, {{station.longitude | unlocalize}}, "{{ station.display_name }}", {{ station.is_health_department|yesno:"true,false" }}, {{ station.is_test_station|yesno:"true,false" }}, {{ station.is_laboratory|yesno:"true,false" }});
+            {% endfor %}
+            //var m2 = new google.maps.Marker({position: center, map: map, visible: true});
+        }
+    </script>
+
 {% endblock %}
+

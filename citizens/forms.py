@@ -38,6 +38,9 @@ class CitizenForm(forms.ModelForm):
 
 
 class ContactPersonForm(forms.ModelForm):
+    """
+    TODO: Check last contact datetime within last week
+    """
     first_name = forms.CharField(widget=forms.TextInput(),
                                  label="Vorname")
     last_name = forms.CharField(widget=forms.TextInput(),
