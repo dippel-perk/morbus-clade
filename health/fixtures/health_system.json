@@ -4,6 +4,7 @@
     "model": "health.User",
     "fields": {
       "username": "gesundheitsamt-braunschweig",
+      "display_name": "Gesundheitsamt Braunschweig",
       "is_health_department": true,
       "is_active": true,
       "is_superuser": false,
@@ -16,12 +17,83 @@
     "pk": 2,
     "model": "health.User",
     "fields": {
-      "username": "Test Station 1",
+      "username": "test-station-1",
+      "display_name": "Test Station am Magnitorwall",
       "is_test_station": true,
       "is_active": true,
       "is_superuser": false,
-      "longitude": 10.333333,
-      "latitude": 52.150002,
+      "latitude": 52.264851,
+      "longitude": 10.531192,
+      "password": "pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE="
+    }
+  },
+  {
+    "pk": 3,
+    "model": "health.User",
+    "fields": {
+      "username": "test-station-2",
+      "display_name": "Test Station an der Maschstraße",
+      "is_test_station": true,
+      "is_active": true,
+      "is_superuser": false,
+      "latitude": 52.268341,
+      "longitude": 10.511871,
+      "password": "pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE="
+    }
+  },
+  {
+    "pk": 4,
+    "model": "health.User",
+    "fields": {
+      "username": "test-station-3",
+      "display_name": "Test Station an der VW Halle",
+      "is_test_station": true,
+      "is_active": true,
+      "is_superuser": false,
+      "latitude": 52.257461,
+      "longitude": 10.517970,
+      "password": "pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE="
+    }
+  },
+  {
+    "pk": 5,
+    "model": "health.User",
+    "fields": {
+      "username": "test-station-4",
+      "display_name": "Test Station am Haus der Wissenschaft",
+      "is_test_station": true,
+      "is_active": true,
+      "is_superuser": false,
+      "latitude": 52.274777,
+      "longitude": 10.528565,
+      "password": "pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE="
+    }
+  },
+  {
+    "pk": 6,
+    "model": "health.User",
+    "fields": {
+      "username": "test-station-5",
+      "display_name": "Test Station in der Schuntersiedlung",
+      "is_test_station": true,
+      "is_active": true,
+      "is_superuser": false,
+      "latitude": 52.294323,
+      "longitude": 10.540267,
+      "password": "pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE="
+    }
+  },
+  {
+    "pk": 7,
+    "model": "health.User",
+    "fields": {
+      "username": "labor-1",
+      "display_name": "Testlabor Braunschweig",
+      "is_laboratory": true,
+      "is_active": true,
+      "is_superuser": false,
+      "longitude": 10.520002,
+      "latitude": 52.286453,
       "password": "pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE="
     }
   }

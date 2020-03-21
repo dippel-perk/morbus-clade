@@ -1,9 +1,52 @@
 {% extends "citizens/base.html" %}
 {% load static %}
 
+{% block header %}
+    {% if citizen.test %}
+
+        {% if citizen.test.is_pending %}
+
+            <div class="row justify-content-lg-end">
+
+                <div class="mr-3 py-1">
+                    Wählen Sie ein Testergebnis:
+                </div>
+
+                <div class="mr-1">
+                    <form action="{% url "update-test" %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="token" value="{{ token }}">
+                        <input type="hidden" name="result" value="0"/>
+                        <button class="btn btn-success mt-0 mb-0 py-1">Negativ</button>
+                    </form>
+                </div>
+
+                <div>
+                    <form action="{% url "update-test" %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="token" value="{{ token }}">
+                        <input type="hidden" name="result" value="1"/>
+                        <button class="btn btn-danger mt-0 mb-0 py-1">Positiv</button>
+                    </form>
+                </div>
+
+            </div>
+        {% endif %}
+
+    {% else %}
+        <form action="{% url "create-test" %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="token" value="{{ token }}">
+            <input type="hidden" name="token" value="{{ token }}">
+            <button class="btn btn-primary"><i class="fas fa-ambulance"></i> Testation-Scan simulieren</button>
+        </form>
+    {% endif %}
+{% endblock %}
+
 {% block content %}
     <div class="position-relative overflow-hidden">
         <div class="container p-4 d-flex justify-content-center">
+
             <div class="card" style="width: 25rem;">
                 <div class="ml-auto mr-auto mt-2" id="qrcode">
                     <div id="qrcode-loading-indicator" style="background: lightgrey;width: 200px; height: 200px;"></div>
@@ -36,6 +79,43 @@
                                     {{ citizen.address }} <br> {{ citizen.zip_code }} {{ citizen.city }}
                                 </div>
                             </div>
+
+                            {% if citizen.test %}
+                                <div class="row mt-2">
+                                    <div class="col-2">
+                                        <i class="fas fa-store"></i>
+                                    </div>
+                                    <div class="col-10">
+                                        {{ citizen.test.test_station.display_name }}
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-2">
+                                        <i class="fas fa-flask"></i>
+                                    </div>
+                                    <div class="col-10">
+                                        {{ citizen.test.laboratory.display_name }}
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-2">
+                                        <i class="fas fa-poll"></i>
+                                    </div>
+                                    <div class="col-10">
+
+                                        {% if citizen.test.is_positive %}
+                                            <span class="badge badge-danger">Positiv</span>
+                                        {% elif citizen.test.is_negative %}
+                                            <span class="badge badge-success">Negativ</span>
+                                        {% else %}
+                                            <span class="badge badge-info">Auswertung läuft</span>
+                                        {% endif %}
+
+
+                                    </div>
+                                </div>
+                            {% endif %}
+
                         </div>
                     </div>
                 </div>
