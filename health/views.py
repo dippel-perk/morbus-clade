@@ -14,11 +14,13 @@ def home(request):
         citizen_data = []
         for citizen in citizens:
             data = citizen.to_dict()
+            data['id'] = citizen.pk
             status = 'Ausstehend'
-            if citizen.test.is_positive:
-                status = 'Positiv'
-            elif citizen.test.is_negative:
-                status = 'Negativ'
+            if hasattr(citizen, 'test'):
+                if citizen.test.is_positive:
+                    status = 'Positiv'
+                elif citizen.test.is_negative:
+                    status = 'Negativ'
             data["status"] = status
             citizen_data.append(data)
         citizens_json = json.dumps(citizen_data)

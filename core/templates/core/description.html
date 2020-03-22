@@ -1,0 +1,200 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+{% block content %}
+
+    <div class="bg-light">
+        <div class="container py-5 px-5">
+            <h1 class="display-4 font-weight-normal">Hilfe zur Demo</h1>
+            <p class="lead font-weight-normal">
+                Die Website ist aktuell noch eine Demo, die aber die einfache Realisierbarkeit des Konzeptes in der
+                Realität veranschaulichen soll.
+                Auf dieser Seite wirst du einmal durch die Demo geführt.
+            </p>
+        </div>
+        <div class="product-device box-shadow d-none d-md-block"></div>
+        <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
+    </div>
+
+    <div class="container">
+        <ul class="nav nav-pills nav-fill">
+            <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                   aria-selected="true">Testperson</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                   aria-controls="profile" aria-selected="false">Gesundheitsamt</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+
+            <div class="bg-white py-5">
+                <div class="container py-5">
+                    <div class="row align-items-center mb-5">
+                        <div class="col-lg-6 order-2 order-lg-1">
+                            <h2 class="font-weight-light">1. Testanmeldung</h2>
+                            <p class="font-italic text-muted mb-4">Begib dich zunächst über die Startseite auf die
+                                Testanmeldungs-Seite.</p>
+
+                        </div>
+                        <div class="col-lg-5 px-5 mx-auto order-1 order-lg-2">
+                            <img src="{% static "core/img/register-btn.png" %}" alt="" class="img-fluid mb-4 mb-lg-0">
+                        </div>
+                    </div>
+
+
+                    <div class="row align-items-center">
+                        <div class="col-lg-5 px-5 mx-auto">
+                            <img src="{% static "core/img/register-form.png" %}" alt="" class="img-fluid mb-4 mb-lg-0">
+                        </div>
+                        <div class="col-lg-6">
+                            <h2 class="font-weight-light">2. Formular ausfüllen</h2>
+                            <p class="font-italic text-muted mb-4">Fülle nun das Formular für den Test aus und
+                                registriere
+                                dich.</p>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center">
+
+                        <div class="col-lg-6">
+                            <h2 class="font-weight-light">3. Testsimulation</h2>
+                            <p class="font-italic text-muted mb-4">Auf der folgenden Seite befinden sich deine
+                                persönlichen
+                                Informationen und ein Qr Code.
+                                Nun würdest du zur nächstgelegenen Teststation fahren und dort den QR-Code beim Testen
+                                vorzeigen. Das medizinische Personal würde diesen dann einscannen und mit der
+                                abegegebenen
+                                Probe
+                                verknüpfen.
+                                Um diesen Vorgang in der Demo zu simulieren, drücke einfach den
+                            </p>
+                        </div>
+                        <div class="col-lg-5 px-5 mx-auto">
+                            <img src="{% static "core/img/test-simulation.png" %}" alt=""
+                                 class="img-fluid mb-4 mb-lg-0 p-5">
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center">
+                        <div class="col-lg-5 px-5 mx-auto">
+                            <img src="{% static "core/img/test-wait.png" %}" alt="" class="img-fluid mb-4 mb-lg-0">
+                        </div>
+                        <div class="col-lg-6">
+                            <h2 class="font-weight-light">4. Warten auf das Ergebnis</h2>
+                            <p class="font-italic text-muted mb-4">Nach Abgeben der Probe an der Teststation muss man
+                                nun
+                                auf
+                                das Ergebnis warten.
+                                Auf der Website kann man sehen an welcher Teststation die Probe abgegeben wurde und
+                                welches
+                                Testlabor die Probe auswertet.
+                                Wenn das Testlabor die Probe getestet hat, tragen sie das Ergebnis ein.
+                                Dies kann in der Demo oben mit einem Klick auf das jeweilige Testergebnis simuliert
+                                werden.</p>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center">
+
+                        <div class="col-lg-6">
+                            <h2 class="font-weight-light">5. Kontaktpersonen hinzufügen</h2>
+                            <p class="font-italic text-muted mb-4">
+                                Wenn das Testergebnis positiv war, bekommt die Testperson einen Link per E-Mail
+                                zugeschickt.
+                                Durch Aufrufen des Links öffnet sich eine Seite auf der Kontaktpersonen hinzugefügt
+                                werden
+                                können.
+                                Diese Seite wird in der Demo automatisch geöffnet nachdem man das Testergebnis als
+                                "Positiv"
+                                ausgewählt hat.
+                            </p>
+                        </div>
+                        <div class="col-lg-5 px-5 mx-auto">
+                            <img src="{% static "core/img/add-contacts.png" %}" alt=""
+                                 class="img-fluid mb-4 mb-lg-0 p-5">
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center">
+                        <div class="col-lg-5 px-5 mx-auto">
+                            <img src="{% static "core/img/add-contact-form.png" %}" alt=""
+                                 class="img-fluid mb-4 mb-lg-0">
+                        </div>
+                        <div class="col-lg-6">
+                            <h2 class="font-weight-light">6. Daten der Kontaktperson angeben</h2>
+                            <p class="font-italic text-muted mb-4">
+                                Beim Hinzufügen der Kontakperson werden die Daten der jeweiligen Person angegeben, die
+                                Intensität des Kontaktes und es kann eine kleine Beschreibung hinzugefügt werden, die
+                                den
+                                Kontakt beschreibt.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+            <div class="bg-white py-5">
+                <div class="container py-5">
+                    <div class="row align-items-center mb-5">
+                        <div class="col-lg-6 order-2 order-lg-1">
+                            <h2 class="font-weight-light">1. Login</h2>
+                            <p class="font-italic text-muted mb-4">Um auf die Verwaltungsseite eines jeweiligen
+                                Gesundheitsamtes zuzugreifen,
+                                muss man sich zunächst einloggen. Um dies zu testen kann man sich mit dem Demo-Account
+                                "gesundheitsamt-braunschweig"
+                                un dem Passwort "test" einloggen.
+                            </p>
+
+                        </div>
+                        <div class="col-lg-5 px-5 mx-auto order-1 order-lg-2">
+                            <img src="{% static "core/img/login.png" %}" alt="" class="img-fluid mb-4 mb-lg-0">
+                        </div>
+                    </div>
+
+
+                    <div class="row align-items-center">
+                        <div class="col-lg-5 px-5 mx-auto">
+                            <img src="{% static "core/img/health-overview.png" %}" alt=""
+                                 class="img-fluid mb-4 mb-lg-0">
+                        </div>
+                        <div class="col-lg-6">
+                            <h2 class="font-weight-light">2. Übersicht</h2>
+                            <p class="font-italic text-muted mb-4">Nach dem Login gibt es für das Gesundheitsamt eine
+                                Übersicht über alle getesteten Personen.
+                                Diese Liste kann nach bestimmten Kriterien gefiltert werden. In Zukunft wird es auch
+                                noch möglich sein aggregierte Statistiken über
+                                die einzelnen Testpersonen einzusehen. Durch Klicken auf eine Testperson gelangt man zur
+                                Detailansicht.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center">
+
+                        <div class="col-lg-6">
+                            <h2 class="font-weight-light">3. Detailansicht</h2>
+                            <p class="font-italic text-muted mb-4">
+                                In der Detailansicht können die genauen Daten zu einer Testperson und dessen Kontaktpersonen eingesehen werden.
+                            </p>
+                        </div>
+                        <div class="col-lg-5 px-5 mx-auto">
+                            <img src="{% static "core/img/health-detail.png" %}" alt=""
+                                 class="img-fluid mb-4 mb-lg-0 p-5">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

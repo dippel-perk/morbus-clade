@@ -52,7 +52,7 @@
                         <td>[[ citizen.email ]]</td>
                         <td>[[ citizen.age ]]</td>
                         <td>[[ citizen.city ]]</td>
-                        <td>[[citizen.status]]</td>
+                        <td><span class="badge" :class="['badge-info', 'badge-danger', 'badge-success'][['Ausstehend', 'Positiv', 'Negativ'].indexOf(citizen.status)]">[[citizen.status]]</span></td>
                     </tr>
                     </tbody>
                 </table>
@@ -80,7 +80,6 @@
             function formatCitizen(citizen) {
                 let c = citizen;
                 c.age = calculateAge(c.date_of_birth);
-                c.id = citizen.pk;
                 return c;
             }
 
