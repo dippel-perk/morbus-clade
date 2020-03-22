@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- <link rel="icon" href="favicon.ico"> -->
 
-    <title>Wir vs Virus</title>
+    <!-- favicons -->
+    <link rel="shortcut icon" href="{% static 'core/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'core/favicon.ico' %}" type="image/x-icon">
+
+
+    <title>MorbusClade</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static "core/bootstrap-4.0.0/css/bootstrap.css" %}" rel="stylesheet">
@@ -61,7 +65,8 @@
         <div class="row">
             <div class="col-4">
                 <small class="d-block mb-3 text-muted">
-                    <img class="d-inline-block mr-2" width="32" height="32" src="{% static "core/img/virus.png" %}"/> MorbusClase
+                    <img class="d-inline-block mr-2" width="32" height="32" src="{% static "core/img/virus.png" %}"/>
+                    MorbusClase
                 </small>
 
                 <a href="{% url "health-home" %}">Zur Übersicht vom Gesundheitsamt</a>
