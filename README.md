@@ -1,7 +1,8 @@
 ## Morbus Clade
 
 A proof of concept for scaling up Sars-Covid-2 testing in Germany. 
-Developed as part of the [WirVsWirus](https://wirvsvirushackathon.org/) Hackathon. A running demo can be found [here](https://sars-cov2-testing.herokuapp.com/).
+Developed as part of the [WirVsWirus](https://wirvsvirushackathon.org/) Hackathon. 
+A running demo can be found [here](https://sars-cov2-testing.herokuapp.com/).
 
 ### Installation
 The website is developed with the django framework.
