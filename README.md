@@ -1,29 +1,28 @@
-### Setting up user groups for celery workers
+## Morbus Clade
 
-The celery-worker group is added in users/fixtures/user_groups.json. The workers need to 
-be added to this group to obtain the necessary permissions.
+A proof of concept for scaling up Sars-Covid-2 testing in Germany. 
+Developed as part of the [WirVsWirus](https://wirvsvirushackathon.org/) Hackathon. A running demo can be found [here](https://sars-cov2-testing.herokuapp.com/).
 
-```
-python3 manage.py loaddata user_groups
-```
+### Installation
+The website is developed with the django framework.
 
-New workers can be added as shown in the fixture. 
-The password has to be generated as a hash. To generate
-a password hash use the build in function and paste it into the fixture.
+1. Clone the repository.
 
-```
-python3 manage.py shell
->>> from django.contrib.auth.hashers import make_password
->>> make_password('test')
-'pbkdf2_sha256$10000$vkRy7QauoLLj$ry+3xm3YX+YrSXbri8s3EcXDIrx5ceM+xQjtpLdw2oE='
-```
+2. Install the required dependencies with
 
-Password 'X6IxEcfpXrTjCjD6HtFswNC43unfqNAudWTNDvNLTSY='
-Hash:'pbkdf2_sha256$180000$W989vEV5QzFx$r0zdLN7PagfdnGV0X6y/Ou89o39pOkqqb0c2a69AXLc=' 
-```
-PIPENV_VENV_IN_PROJECT=1 pipenv run python3 manage.py shell
->>> from django.contrib.auth.models import Group, User
->>> user = User.objects.get(usernamee="krupke")
->>> group = Group.objects.get(name="celery-workers")
->>> user.groups.add(group)
-```
+    ``pip install -r requirements.txt``
+
+3. Execute the database migrations:
+
+    ``python manage.py migrate``
+
+4. load some initial data into the database
+    ``python manage.py loaddata health_system``
+
+5. _optional_: load some dummy fake data for tested persons:
+    ``python manage.py loaddata base_data``
+
+
+### Run
+
+Exceute `python manage.py runserver` to start the webserver.
