@@ -6,7 +6,6 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Citizen(models.Model):
-
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
 
@@ -18,6 +17,17 @@ class Citizen(models.Model):
     address = models.CharField(max_length=128)
     city = models.CharField(max_length=64)
     zip_code = models.CharField(max_length=5)
+
+    def to_dict(self):
+        return dict(
+            address=self.address,
+            first_name=self.first_name,
+            last_name=self.last_name,
+            email=self.email,
+            telephone=str(self.telephone),
+            date_of_birth=str(self.date_of_birth),
+            zip_code=self.zip_code,
+            city=self.city)
 
 
 def one_week_hence():
@@ -72,4 +82,3 @@ class ContactPerson(models.Model):
     @property
     def is_intensity_high(self):
         return self.intensity == ContactPerson.HIGH
-

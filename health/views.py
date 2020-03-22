@@ -4,13 +4,24 @@ from django.http import HttpResponseNotFound
 from .models import User, Test
 from citizens.models import Citizen, AccessToken
 from django.core import serializers
+import json
 
 
 @login_required
 def home(request):
     if request.user.is_health_department:
         citizens = Citizen.objects.all()
-        citizens_json = serializers.serialize("json", citizens)
+        citizen_data = []
+        for citizen in citizens:
+            data = citizen.to_dict()
+            status = 'Ausstehend'
+            if citizen.test.is_positive:
+                status = 'Positiv'
+            elif citizen.test.is_negative:
+                status = 'Negativ'
+            data["status"] = status
+            citizen_data.append(data)
+        citizens_json = json.dumps(citizen_data)
         return render(request, 'health/health_department/home.html', {'citizens': citizens_json})
 
 
