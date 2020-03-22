@@ -17,8 +17,15 @@ def show(request, token):
 
 def citizen_detail(request, token):
     if request.method == "GET":
-        token_object = AccessToken.objects.get(token=token)
-        return render(request, 'citizens/detail.html', {'citizen': token_object.citizen, 'times': range(10)})
+        token_object = get_object_or_404(AccessToken, token=token)
+
+        try:
+            if token_object.citizen.test and token_object.citizen.test.is_positive:
+                return render(request, 'citizens/detail.html', {'citizen': token_object.citizen, 'token_based': True})
+            else:
+                return redirect('citizen-show', token=token)
+        except Test.DoesNotExist:
+            return HttpResponseNotFound()
     return HttpResponseNotFound()
 
 

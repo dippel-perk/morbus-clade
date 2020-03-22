@@ -51,10 +51,15 @@ def update_test_result(request):
         result = int(request.POST.get("result", -1))
         choice = next((t for t in Test.RESULT_CHOICES if t[0] == result))
 
+        redirect_adress = 'citizen-show'
+
         if choice:
             citizen.test.result = choice[0]
             citizen.test.save()
 
-        return redirect("citizen-show", token=token.token)
+            if choice[0] == Test.POSITIVE:
+                redirect_adress = 'detail'
+
+        return redirect(redirect_adress, token=token.token)
 
     return HttpResponseNotFound()

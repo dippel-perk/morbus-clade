@@ -1,9 +1,10 @@
 {% extends "core/base.html" %}
 
 {% block header %}
+    <span class="d-inline-block float-left" href="#">Angemeldet als {{ user.display_name }}</span>
+
     {% block links %}
     {% endblock %}
 
-    <a class="d-inline-block mr-3" href="#">{{ user.username }}</a>
-    <a class="d-inline-block" href="{% url 'logout' %}">Logout</a>
+    <a class="d-inline-block mr-3" href="{% url 'logout' %}">Abmelden</a>
 {% endblock %}
