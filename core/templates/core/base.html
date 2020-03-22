@@ -23,19 +23,25 @@
 <body>
 
 <nav class="py-1 bg-light navbar-light">
-    <div class="container d-flex flex-column flex-md-row">
-        <div class="text-left col-md-1 py-2">
-            <a class="" href="{% url "home" %}">
-                <img width="24" height="24" src="{% static "core/virus.svg" %}">
-            </a>
-        </div>
+    <div class="container">
+        <div class="row">
+            <div class="text-left col-1 py-0 my-0">
+                <a class="" href="{% url "home" %}">
+                    <img class="d-inline-block" width="64" height="64" src="{% static "core/img/virus.png" %}"/>
+                </a>
+            </div>
 
-        <div class="text-right col-md-11 py-2">
-            {% block header %}
-                <a class="d-inline-block mr-3" href="{% url "home" %}">Startseite</a>
-                <a class="d-inline-block mr-3" href="{% url "citizen-create" %}">Für Test anmelden</a>
-                <a class="d-inline-block" href="{% url "about-us" %}">Über uns</a>
-            {% endblock %}
+            <div class="col-1 py-3">
+                <h3 class="upper py-0">MorbusClade</h3>
+            </div>
+
+            <div class="text-right col-10 py-3 mt-2">
+                {% block header %}
+                    <a class="d-inline-block mr-3" href="{% url "home" %}">Startseite</a>
+                    <a class="d-inline-block mr-3" href="{% url "citizen-create" %}">Für Test anmelden</a>
+                    <a class="d-inline-block" href="{% url "about-us" %}">Über uns</a>
+                {% endblock %}
+            </div>
         </div>
     </div>
 </nav>
@@ -54,22 +60,28 @@
         <div class="row">
             <div class="col-4">
                 <small class="d-block mb-3 text-muted">
-                    <img width="24" height="24" src="{% static "core/virus.svg" %}">
-                    &copy; 2020
+                    <img class="d-inline-block mr-2" width="32" height="32" src="{% static "core/img/virus.png" %}"/> MorbusClase
                 </small>
 
                 <a href="{% url "health-home" %}">Zur Übersicht vom Gesundheitsamt</a>
             </div>
             <div class="col-8 text-right">
 
-                <div class="text-muted">Jonas Dippel <a href="#">j.dippel@campus.tu-berlin.de</a>
-                    <br/> Michael Perk <a href="#">m.perk@tu-bs.de</a>
+                <div class="text-muted">Jonas Dippel<a class="ml-2" href="#">j.dippel@campus.tu-berlin.de</a>
+                    <br/> Michael Perk <a class="ml-2" href="#">m.perk@tu-bs.de</a>
                 </div>
 
-                <div class="text-muted small">
-                    <a class="text-muted" href="https://www.freepik.com/free-photos-vectors/people">Vectors created by
-                        freepik -
-                        www.freepik.com</a>
+                <div class="small text-muted">
+
+                    <div>
+                        Vectors created by freepik - <a class=""
+                                                        href="https://www.freepik.com/free-photos-vectors/people">www.freepik.com</a>
+                    </div>
+                    <div>
+                        Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a>
+                        and <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from
+                        <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+                    </div>
                 </div>
             </div>
         </div>
