@@ -24,7 +24,7 @@ contact_person_current_id = 0
 RESULT_CHOICES = [
     (1, 'Positive'),
     (0, 'Negative'),
-    (-1, 'Pending'),
+#    (-1, 'Pending'),
 ]
 
 INTENSITY_CHOICES = [0, 1, 2]
@@ -98,7 +98,7 @@ def generate_citizen(pk):
 
 
 output = []
-for i in range(100):
+for i in range(200):
     output.append(generate_citizen(i))
     output.append(generate_access_token(i))
     output.append(generate_test(i))
@@ -106,5 +106,5 @@ for i in range(100):
     for j in range(rd.randint(3,15)):
         output.append(generate_contact_person(i))
 
-with open("base_date.json", "w") as f:
+with open("base_data.json", "w") as f:
     json.dump(output, f)
