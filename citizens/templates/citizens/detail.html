@@ -127,7 +127,7 @@
                 </div>
                 <div class="container py-2">
                     <!-- timeline item 1 -->
-                    {% for person in citizen.contact_persons.all %}
+                    {% for person in contact_persons %}
                         <!-- timeline item 1 -->
                         <div class="row no-gutters">
                             {% if forloop.counter|divisibleby:2 %}

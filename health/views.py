@@ -31,7 +31,8 @@ def home(request):
 def citizen_detail_pk(request, pk):
     if request.method == "GET":
         citizen = get_object_or_404(Citizen, pk=pk)
-        return render(request, 'citizens/detail.html', {'citizen': citizen, 'times': range(10)})
+        contact_persons = citizen.contact_persons.order_by('last_contact')
+        return render(request, 'citizens/detail.html', {'citizen': citizen, 'contact_persons': contact_persons})
     return HttpResponseNotFound()
 
 

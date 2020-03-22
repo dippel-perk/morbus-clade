@@ -18,10 +18,10 @@ def show(request, token):
 def citizen_detail(request, token):
     if request.method == "GET":
         token_object = get_object_or_404(AccessToken, token=token)
-
+        contact_persons = citizen.contact_persons.order_by('last_contact')
         try:
             if token_object.citizen.test and token_object.citizen.test.is_positive:
-                return render(request, 'citizens/detail.html', {'citizen': token_object.citizen, 'token_based': True})
+                return render(request, 'citizens/detail.html', {'citizen': token_object.citizen, 'token_based': True, 'contact_persons': contact_persons})
             else:
                 return redirect('citizen-show', token=token)
         except Test.DoesNotExist:
