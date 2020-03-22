@@ -10,6 +10,8 @@
                 Die Website ist aktuell noch eine Demo, die aber die einfache Realisierbarkeit des Konzeptes in der
                 Realität veranschaulichen soll.
                 Auf dieser Seite wirst du einmal durch die Demo geführt.
+                Die Seite wird von zwei Parteien genutzt: Einem Bürger der einen SARS-CoV-2 Test machen möchte
+                und dem Gesundheitsamt, dass die Gesamtheit der Tests überblicken möchte.
             </p>
         </div>
         <div class="product-device box-shadow d-none d-md-block"></div>
@@ -38,7 +40,7 @@
                     <div class="row align-items-center mb-5">
                         <div class="col-lg-6 order-2 order-lg-1">
                             <h2 class="font-weight-light">1. Testanmeldung</h2>
-                            <p class="font-italic text-muted mb-4">Begib dich zunächst über die Startseite auf die
+                            <p class="font-italic text-muted mb-4">Begib dich zunächst auf die
                                 Testanmeldungs-Seite.</p>
 
                         </div>
@@ -54,9 +56,12 @@
                         </div>
                         <div class="col-lg-6">
                             <h2 class="font-weight-light">2. Formular ausfüllen</h2>
-                            <p class="font-italic text-muted mb-4">Fülle nun das Formular für den Test aus und
-                                registriere
-                                dich.</p>
+                            <p class="font-italic text-muted mb-4">Fülle nun das unten stehende Formular. Damit wirst
+                                du für einen bevorstehenden Test registriert.
+                                Biite beachte, dass momentan noch <strong>keine</strong> Emails versendet werden.
+                                Deshalb wirst du direkt zum QR Code weitergeleitet.
+
+                            </p>
                         </div>
                     </div>
 
@@ -66,13 +71,13 @@
                             <h2 class="font-weight-light">3. Testsimulation</h2>
                             <p class="font-italic text-muted mb-4">Auf der folgenden Seite befinden sich deine
                                 persönlichen
-                                Informationen und ein Qr Code.
-                                Nun würdest du zur nächstgelegenen Teststation fahren und dort den QR-Code beim Testen
-                                vorzeigen. Das medizinische Personal würde diesen dann einscannen und mit der
+                                Informationen und ein QR Code.
+                                Nun würdest du zur nächstgelegenen Teststation fahren und dort den QR-Code
+                                vorzeigen. Das medizinische Personal würde deinen Code scannen und mit der
                                 abegegebenen
                                 Probe
                                 verknüpfen.
-                                Um diesen Vorgang in der Demo zu simulieren, drücke einfach den
+                                Um diesen Vorgang in der Demo zu simulieren, drücke einfach den Button im Header der Seite.
                             </p>
                         </div>
                         <div class="col-lg-5 px-5 mx-auto">
@@ -87,15 +92,14 @@
                         </div>
                         <div class="col-lg-6">
                             <h2 class="font-weight-light">4. Warten auf das Ergebnis</h2>
-                            <p class="font-italic text-muted mb-4">Nach Abgeben der Probe an der Teststation muss man
-                                nun
-                                auf
-                                das Ergebnis warten.
+                            <p class="font-italic text-muted mb-4">Nach Abgeben der Probe an der Teststation, muss man
+                                normalerweise das Ergebnis warten.
                                 Auf der Website kann man sehen an welcher Teststation die Probe abgegeben wurde und
                                 welches
                                 Testlabor die Probe auswertet.
-                                Wenn das Testlabor die Probe getestet hat, tragen sie das Ergebnis ein.
-                                Dies kann in der Demo oben mit einem Klick auf das jeweilige Testergebnis simuliert
+                                Sobald das Testlabor die Probe getestet hat, trägt sie das Ergebnis ein und der Bürger bekommt
+                                eine Mail mit dem Link zu seinem Testergebnis.
+                                Die Analyse der Probe kann in der Demo mit einem Klick auf das jeweilige Testergebnis simuliert
                                 werden.</p>
                         </div>
                     </div>
@@ -105,14 +109,12 @@
                         <div class="col-lg-6">
                             <h2 class="font-weight-light">5. Kontaktpersonen hinzufügen</h2>
                             <p class="font-italic text-muted mb-4">
-                                Wenn das Testergebnis positiv war, bekommt die Testperson einen Link per E-Mail
-                                zugeschickt.
-                                Durch Aufrufen des Links öffnet sich eine Seite auf der Kontaktpersonen hinzugefügt
-                                werden
-                                können.
-                                Diese Seite wird in der Demo automatisch geöffnet nachdem man das Testergebnis als
-                                "Positiv"
-                                ausgewählt hat.
+                                Wenn das Testergebnis positiv war, soll der Bürger seine Kontaktpersonen in ein Formular eintragen.
+                                Durch Aufrufen des Links aus der Email öffnet sich eine Seite auf der Kontaktpersonen hinzugefügt
+                                werden können. Da wir noch keine Emails versenden, wird diese Seite
+                                in der Demo automatisch geöffnet nachdem man das Testergebnis als
+                                "positiv"
+                                markiert hat.
                             </p>
                         </div>
                         <div class="col-lg-5 px-5 mx-auto">
@@ -129,10 +131,11 @@
                         <div class="col-lg-6">
                             <h2 class="font-weight-light">6. Daten der Kontaktperson angeben</h2>
                             <p class="font-italic text-muted mb-4">
-                                Beim Hinzufügen der Kontakperson werden die Daten der jeweiligen Person angegeben, die
-                                Intensität des Kontaktes und es kann eine kleine Beschreibung hinzugefügt werden, die
-                                den
-                                Kontakt beschreibt.
+                                Beim Hinzufügen der Kontakperson werden die Kontaktdaten der jeweiligen Person angegeben.
+                                Weiterhin soll die
+                                Intensität des Kontaktes und es eine kleine Beschreibung hinzugefügt werden, die
+                                die Art
+                                Kontaktes beschreibt.
                             </p>
                         </div>
                     </div>
@@ -147,11 +150,12 @@
                     <div class="row align-items-center mb-5">
                         <div class="col-lg-6 order-2 order-lg-1">
                             <h2 class="font-weight-light">1. Login</h2>
-                            <p class="font-italic text-muted mb-4">Um auf die Verwaltungsseite eines jeweiligen
+                            <p class="font-italic text-muted mb-4">Um auf die Verwaltungsseite eines
                                 Gesundheitsamtes zuzugreifen,
-                                muss man sich zunächst einloggen. Um dies zu testen kann man sich mit dem Demo-Account
+                                muss man sich zunächst als dieses einloggen.
+                                Um dies zu testen kann man sich mit dem Demo-Account
                                 "gesundheitsamt-braunschweig"
-                                un dem Passwort "test" einloggen.
+                                und dem Passwort "test" einloggen.
                             </p>
 
                         </div>
@@ -183,7 +187,8 @@
                         <div class="col-lg-6">
                             <h2 class="font-weight-light">3. Detailansicht</h2>
                             <p class="font-italic text-muted mb-4">
-                                In der Detailansicht können die genauen Daten zu einer Testperson und dessen Kontaktpersonen eingesehen werden.
+                                In der Detailansicht können die Kontaktdaten und Testergebnisse
+                                zu einer Person sowie dessen Kontaktpersonen eingesehen werden.
                             </p>
                         </div>
                         <div class="col-lg-5 px-5 mx-auto">
