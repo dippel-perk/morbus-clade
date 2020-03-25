@@ -53,7 +53,7 @@ def evaluation(request):
             'citizens_with_cp_amounts': [0] * (max_contact_person_count - min_contact_person_count + 1)
         }
     }
-    
+
     for citizen in citizens:
 
         age_index = plots_data['ages_chart']['ages'].index(citizen.age)
