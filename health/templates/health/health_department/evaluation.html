@@ -1,0 +1,196 @@
+{% extends "health/health_department/base.html" %}
+{% load static %}
+{% block content %}
+
+    <div class="bg-light">
+        <div class="container py-5 px-5">
+
+            <div class="row">
+                <div class="col-lg-10 d-none d-lg-block">
+                    <h1 class="display-4 font-weight-normal">Auswertungen</h1>
+                    <p class="lead font-weight-normal">
+                        Auf dieser Seite finden Sie verschiedene Auswertungen zu den erhobenen Daten. Auf der linken
+                        Seite
+                        können Sie zwischen den jeweiligen Auswertungen wechseln.
+                    </p>
+                </div>
+
+                <div class="col-lg-2 d-none d-lg-block">
+                    <img src="{% static "core/img/chart.png" %}" alt="" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white">
+
+        <div class="container">
+
+            <div class="row my-5">
+
+                <div class="col-4">
+
+                    <div class="nav nav-pills flex-column" id="charts-tab" role="tablist" aria-orientation="vertical">
+
+                        <a class="nav-link active"
+                           id="charts-proportion-tab"
+                           data-toggle="pill"
+                           href="#charts-proportion"
+                           role="tab"
+                           aria-controls="charts-proportion"
+                           aria-selected="true">Übersicht der Testergebnisse</a>
+
+                        <a class="nav-link"
+                           id="charts-ages-tab"
+                           data-toggle="pill"
+                           href="#charts-ages"
+                           role="tab"
+                           aria-controls="charts-ages"
+                           aria-selected="true">Testergebnisse nach Alter</a>
+
+                        <a class="nav-link"
+                           id="charts-contact-persons-tab"
+                           data-toggle="pill"
+                           href="#charts-contact-persons"
+                           role="tab"
+                           aria-controls="charts-contact-persons"
+                           aria-selected="true">Anzahl der Kontaktpersonen</a>
+                    </div>
+                </div>
+                <div class="tab-content col-8" id="charts-content">
+                    <div class="tab-pane fade show active"
+                         id="charts-proportion"
+                         role="tabpanel"
+                         aria-labelledby="charts-proportion-tab">
+                        <h3>Testergebnisse im Überblick</h3>
+                        <canvas id="chart-proportion-canvas"></canvas>
+                    </div>
+                    <div class="tab-pane fade"
+                         id="charts-ages"
+                         role="tabpanel"
+                         aria-labelledby="charts-ages-tab">
+                        <h3>Testergebnisse nach Alter</h3>
+                        <canvas id="chart-ages-canvas"></canvas>
+                    </div>
+
+                    <div class="tab-pane fade"
+                         id="charts-contact-persons"
+                         role="tabpanel"
+                         aria-labelledby="charts-contact-persons-tab">
+                        <h3>Anzahl der Kontaktpersonen</h3>
+                        <p class="text-muted">
+                            Dieser Text stellt die Anzahl der Personen dar, die eine bestimmte Anzahl von
+                            Kontaktpersonen
+                            hatten.
+                        </p>
+                        <canvas id="charts-contact-persons-canvas"></canvas>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+    <script>
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF'.split('');
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function createProportionChart() {
+            let canvas = $("#chart-proportion-canvas");
+
+            data = {
+                datasets: [{
+                    data: [
+                        {{ proportion_chart.positive }},
+                        {{ proportion_chart.negative }},
+                        {{ proportion_chart.unknown }}
+                    ],
+                    backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+                }],
+                labels: [
+                    'Positiv',
+                    'Negativ',
+                    'Unbekannt'
+                ],
+            };
+
+            var pieChart = new Chart(canvas, {
+                type: 'doughnut',
+                data: data,
+                options: {}
+            });
+        }
+
+        function createAgesChart() {
+            new Chart(document.getElementById("chart-ages-canvas"), {
+                type: 'bar',
+                data: {
+                    labels: {{ ages_chart.ages | safe }},
+                    datasets: [{
+                        data: {{ ages_chart.positives | safe }},
+                        label: "Positiv",
+                        backgroundColor: "rgb(255, 99, 132)",
+                    }, {
+                        data: {{ ages_chart.negatives | safe }},
+                        label: "Negativ",
+                        backgroundColor: "rgb(54, 162, 235)",
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                callback: function (value) {
+                                    if (value % 1 === 0) {
+                                        return value;
+                                    }
+                                }
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+
+        function createContactPersonsChart() {
+            let canvas = $("#charts-contact-persons-canvas");
+
+            let colors = [];
+
+            for (let i = 0; i < {{ contact_persons_chart.citizens_with_cp_amounts | length }}; i++)
+                colors.push(getRandomColor());
+
+            data = {
+                datasets: [{
+                    data: {{ contact_persons_chart.citizens_with_cp_amounts | safe }},
+                    backgroundColor: colors
+                }],
+                labels: {{ contact_persons_chart.contact_person_counts | safe }},
+            };
+
+            var pieChart = new Chart(canvas, {
+                type: 'doughnut',
+                data: data,
+                options: {}
+            });
+        }
+
+        $(document).ready(function () {
+            createProportionChart();
+            createContactPersonsChart();
+            createAgesChart();
+        });
+    </script>
+{% endblock %}

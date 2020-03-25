@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 
 from django.utils.crypto import get_random_string
 from phonenumber_field.modelfields import PhoneNumberField
@@ -17,6 +17,12 @@ class Citizen(models.Model):
     address = models.CharField(max_length=128)
     city = models.CharField(max_length=64)
     zip_code = models.CharField(max_length=5)
+
+    @property
+    def age(self):
+        today = date.today()
+        return today.year - self.date_of_birth.year - (
+                    (today.month, today.day) < (self.date_of_birth.month, self.date_of_birth.day))
 
     def to_dict(self):
         return dict(
